@@ -1,17 +1,26 @@
 # Projectgegevens
-**VOORNAAM NAAM:**  Plaats hier jouw voornaam & naam.
+**VOORNAAM NAAM:**  
+Ellen Dequeker
 
-**Sparringpartner:** schrijf hier de naam van jouw sparring partner. Deze persoon is jouw klankbord, redder in nood, motivator, partner in crime :-)
+**Sparringpartner:** 
+Jarne Demoen
 
-**Projectsamenvatting in max 10 woorden:** schrijf hier jouw samenvatting
+**Projectsamenvatting in max 10 woorden:** 
+Katten binnenhouden in slechte weersomstandigheden met behulp van een kattenluik.
 
-**Projecttitel:** plaats hier een catchy werktitel van jouw project
+**Projecttitel:** 
+Smart Hatch
 
 
 # Tips voor feedbackgesprekken
 ## Voorbereiding
 
 >Bepaal voor jezelf waar je graag feedback op wil. Schrijf op voorhand een aantal punten op waar je zeker feedback over wil krijgen. Op die manier zal het feedbackgesprek gerichter verlopen en zullen vragen, die je zeker beantwoord wil hebben, aan bod komen.
+
+- Kattenluik met neerslagdetector
+- magneetsensor, magneetslot
+- led strip (open of gesloten)
+- manueel sluiten via webserver
 
 ## Tijdens het gesprek:
 >**Luister actief:** Schiet niet onmiddellijk in de verdediging maar probeer goed te luisteren. Laat verbaal en non-verbaal ook zien dat je aandacht hebt voor de feedback door een open houding (oogcontact, rechte houding), door het maken van aantekeningen, knikken...
@@ -30,12 +39,12 @@
 
 # Feedforward gesprekken
 
-## Gesprek 1 (Datum: dd/mm/yyyy)
-Lector: 
+## Gesprek 1 (Datum: 16/03/2021)
+Lector: Pieter jan, Simon
 
 Vragen voor dit gesprek:
-- [x] vraag 1:
-- [ ] vraag 2:
+- [x] vraag 1: Kan ik eventueel nog gebruik maken van andere sensoren/ actuatoren
+- [ ] vraag 2: 
 
 Dit is de feedback op mijn vragen. 
 - feedback 1
