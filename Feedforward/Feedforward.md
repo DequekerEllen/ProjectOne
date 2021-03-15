@@ -18,7 +18,8 @@ Smart Hatch
 >Bepaal voor jezelf waar je graag feedback op wil. Schrijf op voorhand een aantal punten op waar je zeker feedback over wil krijgen. Op die manier zal het feedbackgesprek gerichter verlopen en zullen vragen, die je zeker beantwoord wil hebben, aan bod komen.
 
 - Kattenluik met neerslagdetector
-- magneetsensor, magneetslot
+- magneetslot
+- rfid lezer buiten en binnen, chip om halsband van de kat
 - led strip (open of gesloten)
 - manueel sluiten via webserver
 
