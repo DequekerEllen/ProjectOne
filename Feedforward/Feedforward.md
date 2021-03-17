@@ -48,11 +48,11 @@ Vragen voor dit gesprek:
 - [ ] vraag 2: 
 
 Dit is de feedback op mijn vragen. 
-- feedback 1
+- feedback 1: Gebruik maken van neopixels in de plaats van een led-strip
 - feedback 2
 
 Hier komt de feedforward: wat ga ik concreet doen?
-- [ ] ToDo 1
+- [ ] ToDo 1: aanpassen documenten en opnieuw indienen, beginnen met het bestellen van de onderdelen.
 - [ ] ToDo 2
 
 ## Gesprek 2 (Datum: dd/mm/yyyy)
