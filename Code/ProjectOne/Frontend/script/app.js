@@ -8,8 +8,11 @@ const listenToSocket = function () {
       console.log("verbonden met socket webserver");
     });
     socket.on("B2F_waarde_device", function (jsonObject) {
+        
         console.log("Dit is de Waarde");
         console.log(jsonObject);
+        htmlds18.innerHTML = ''
+        htmlds18.innerHTML = `${jsonObject.waarde} °C` ;
       });
 }
 

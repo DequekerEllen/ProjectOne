@@ -8,6 +8,7 @@ from flask import Flask, jsonify
 
 from repositories.DataRepository import DataRepository
 
+nummer = 1
 
 sensor_file_name = '/sys/bus/w1/devices/28-0216146ad6ee/w1_slave'
 sensorfile = open(sensor_file_name, 'r')
@@ -16,8 +17,8 @@ sensorfile = open(sensor_file_name, 'r')
 def read_temp():
     for i, line in enumerate(sensorfile):
         if i == 1:  # 2de lijn
-            temp = int(line.strip('\n')[line.find('t=')+2:])/1000.0
-    return temp
+            value = int(line.strip('\n')[line.find('t=')+2:])/1000.0
+    return value
 
 
 # Code voor Flask
@@ -47,9 +48,9 @@ def hallo():
 
 @socketio.on('connect')
 def initial_connection():
+    global nummer
     print('A new client connect')
     # # Send to the client!
-    nummer = 1
     nummer += 1
     print(nummer)
     temp = read_temp()
