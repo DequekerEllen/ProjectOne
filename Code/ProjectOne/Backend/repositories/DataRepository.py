@@ -11,6 +11,7 @@ class DataRepository:
         return
 
     @staticmethod
-    def read_devices():
-        sql = "SELECT * from Device"
-        return Database.get_rows(sql)
+    def toevoegen_historiek(Volgnummer, DeviceID, Waarde, Status, Datum):
+        sql = "INSERT INTO historiek (Volgnummer, DeviceID, Waarde, Status, Datum) VALUES (%s, %s, %s, %s, %s)"
+        params = [Volgnummer, DeviceID, Waarde, Status, Datum]
+        return Database.execute_sql(sql, params)

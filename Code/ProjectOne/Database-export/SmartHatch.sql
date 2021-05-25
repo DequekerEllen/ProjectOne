@@ -15,6 +15,21 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+SET
+  SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET
+  time_zone = "+00:00";
+--
+  -- Database: `SmartHatch`
+  --
+  DROP DATABASE IF EXISTS SmartHatch;
+CREATE DATABASE IF NOT EXISTS `SmartHatch` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `SmartHatch`;
+CREATE USER IF NOT EXISTS 'root_fswd' @'localhost' IDENTIFIED BY 'root_fswd';
+GRANT ALL PRIVILEGES ON *.* TO 'root_fswd' @'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+
+--
 --
 -- Table structure for table `device`
 --
@@ -52,14 +67,12 @@ DROP TABLE IF EXISTS `historiek`;
 CREATE TABLE `historiek` (
   `Volgnummer` int NOT NULL,
   `DeviceID` int DEFAULT NULL,
-  `KatID` int DEFAULT NULL,
+  `Waarde` float DEFAULT NULL,
   `Status` tinyint NOT NULL,
   `Datum` datetime NOT NULL,
   PRIMARY KEY (`Volgnummer`),
   KEY `fk_Historiek_Device_idx` (`DeviceID`),
-  KEY `fk_Historiek_Kat1_idx` (`KatID`),
   CONSTRAINT `fk_Historiek_Device` FOREIGN KEY (`DeviceID`) REFERENCES `device` (`DeviceID`),
-  CONSTRAINT `fk_Historiek_Kat1` FOREIGN KEY (`KatID`) REFERENCES `kat` (`KatID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -107,5 +120,3 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2021-05-24 17:50:54
