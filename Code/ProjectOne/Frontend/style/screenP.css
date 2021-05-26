@@ -1,250 +1,981 @@
-/* Kleur tussen een paar letters moet hetzelfde zijn als achtergrondkleur */
-.cls-27 {
-    fill: rgb(216, 216, 216);
-}
-
-body{
-    background-color: rgb(216, 216, 216);
-    font-family: sans-serif;
-}
-
-.container{
-    margin: 24px;
-    color: rgb(32, 32, 32);
-}
-
 .sensorTemp{
     margin-top: 56px;
 }
 
-svg{
-    width: 8%;
+/*------------------------------------*\
+  #FONTS
+\*------------------------------------*/
+
+
+/*------------------------------------*\
+  #GENERIC
+\*------------------------------------*/
+
+/*
+    Generic: Page
+    ---
+    Global page styles + universal box-sizing:
+*/
+
+html {
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: 'General Sans', Helvetica, arial, sans-serif;
+  background-color: rgb(212, 212, 212);
+  color: #111;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  margin: 24px;
 }
 
-.cls-1 {
-    fill: #824091;
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 
-.cls-2 {
-    fill: #8b4292;
+/*
+ * Remove text-shadow in selection highlight:
+ * https://twitter.com/miketaylr/status/12228805301
+ *
+ * Customize the background color to match your design.
+ */
+
+::selection {
+  background: #e85e00;
+  color: white;
+  text-shadow: none;
 }
 
-.cls-3 {
-    fill: #cf589c;
+/*------------------------------------*\
+  #Elements
+\*------------------------------------*/
+
+/*
+    Elements: Images
+    ---
+    Default markup for images to make them responsive
+*/
+
+img {
+  max-width: 100%;
+  vertical-align: top;
 }
 
-.cls-4 {
-    fill: #e15f9f;
+/*
+    Elements: typography
+    ---
+    Default markup for typographic elements
+*/
+
+h1 {
+  font-size: 36px;
+  line-height: 40px;
+  margin: 0 0 24px;
 }
 
-.cls-5 {
-    fill: #934493;
+h2 {
+  font-size: 23px;
+  line-height: 32px;
+  margin: 0 0 24px;
 }
 
-.cls-6 {
-    fill: #8e4393;
+h3 {
+  font-size: 18px;
+  line-height: 24px;
+  margin: 0 0 24px;
 }
 
-.cls-7 {
-    fill: #9b4794;
+h4,
+h5,
+h6 {
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0 0 24px;
 }
 
-.cls-8 {
-    fill: #a34a96;
+p,
+ol,
+ul,
+dl,
+table,
+address,
+figure {
+  margin: 0 0 24px;
 }
 
-.cls-9 {
-    fill: #af4d97;
+ul,
+ol {
+  padding-left: 24px;
 }
 
-.cls-10 {
-    fill: #974593;
+li ul,
+li ol {
+  margin-bottom: 0;
 }
 
-.cls-11 {
-    fill: #b54f98;
+blockquote {
+  font-style: italic;
+  font-size: 23px;
+  line-height: 32px;
+  margin: 0 0 24px;
+  font-family: 'Times New Roman', serif;
 }
 
-.cls-12 {
-    fill: #bf539a;
+blockquote * {
+  font-size: inherit;
+  line-height: inherit;
 }
 
-.cls-13 {
-    fill: #b85098;
+figcaption {
+  font-size: 12px;
+  line-height: 16px;
+  padding-top: 8px;
+  color: Grey;
 }
 
-.cls-14 {
-    fill: #c8569b;
+hr {
+  border: 0;
+  height: 1px;
+  background: LightGrey;
+  margin: 0 0 24px;
 }
 
-.cls-15 {
-    fill: #894393;
+a {
+  color: #007c89;
+  transition: all 0.1s ease-in-out;
 }
 
-.cls-16 {
-    fill: #d65c9e;
+a:visited,
+a:active {
+  color: #007c89;
 }
 
-.cls-17 {
-    fill: #b34f98;
+a:hover,
+a:focus {
+  color: #064555;
 }
 
-.cls-18 {
-    fill: #c5569b;
+@media (min-width: 992px) {
+    p{
+        margin: 0;
+    }
+    .c-logo{
+        margin: 0;
+    }
 }
 
-.cls-19 {
-    fill: #da5f9f;
+/*------------------------------------*\
+  #OBJECTS
+\*------------------------------------*/
+
+/*
+    Objects: Row
+    ---
+    Creates a horizontal row that stretches the viewport and adds padding around children
+*/
+
+.o-row {
+  padding: 24px 24px 0;
+  display: flow-root;
 }
 
-.cls-20 {
-    fill: #a74a96;
+/* color modifiers */
+
+.o-row--primary-x-light {
+  background-color: #f2faff;
 }
 
-.cls-21 {
-    fill: #dd5d9e;
+/* size modifiers */
+
+.o-row--lg {
+  padding-top: 48px;
+  padding-bottom: 24px;
 }
 
-.cls-22 {
-    fill: #bc5299;
+.o-row--xl {
+  padding-top: 72px;
+  padding-bottom: 48px;
 }
 
-.cls-23 {
-    fill: #cc599c;
+@media (min-width: 768px) {
+  .o-row {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .o-row--md {
+    padding-top: 48px;
+    padding-bottom: 24px;
+  }
+
+  .o-row--lg {
+    padding-top: 72px;
+    padding-bottom: 48px;
+  }
 }
 
-.cls-24 {
-    fill: #de609f;
+@media (min-width: 992px) {
+  .o-row--xl {
+    padding-top: 96px;
+    padding-bottom: 72px;
+  }
 }
 
-.cls-25 {
-    fill: #854192;
+/*
+    Objects: Container
+    ---
+    Creates a horizontal container that sets de global max-width
+*/
+
+.o-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 90em; /* 90 * 16px = 1440px */
 }
 
-.cls-26 {
-    fill: #a14b96;
+/*
+    Objects: section
+    ---
+    Creates vertical whitespace between adjacent sections inside a row
+*/
+
+.o-section {
+  display: flow-root;
 }
 
-.cls-31 {
-    fill: url(#Naamloos_verloop_9);
+.o-section + .o-section {
+  margin-top: 24px;
 }
 
-.cls-32 {
-    fill: #fff;
+@media (min-width: 768px) {
+  .o-section--lg + .o-section--lg,
+  .o-section--xl + .o-section--xl {
+    margin-top: 48px;
+  }
 }
 
-.cls-33 {
-    fill: #b84f98;
+@media (min-width: 1200px) {
+  .o-section--xl + .o-section--xl {
+    margin-top: 72px;
+  }
 }
 
-.cls-34 {
-    fill: #9f4794;
+/*
+    Objects: Layout
+    ---
+    The layout object provides us with a column-style layout system. This object
+    contains the basic structural elements, but classes should be complemented
+    with width utilities
+*/
+
+.o-layout {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.cls-35 {
-    fill: #ae4b96;
+.o-layout__item {
+  flex-basis: 100%;
 }
 
-.cls-36 {
-    fill: #a24895;
+
+/* gutter modifiers, these affect o-layout__item too */
+
+.o-layout--gutter {
+  margin: 0 -12px;
 }
 
-.cls-37 {
-    fill: #bc5199;
+.o-layout--gutter > .o-layout__item {
+  padding: 0 12px;
 }
 
-.cls-38 {
-    fill: #a64995;
+.o-layout--gutter-sm {
+  margin: 0 -6px;
 }
 
-.cls-39 {
-    fill: #a44995;
+.o-layout--gutter-sm > .o-layout__item {
+  padding: 0 6px;
 }
 
-.cls-40 {
-    fill: #ac4b96;
+.o-layout--gutter-lg {
+  margin: 0 -24px;
 }
 
-.cls-41 {
-    fill: #b14d97;
+.o-layout--gutter-lg > .o-layout__item {
+  padding: 0 24px;
 }
 
-.cls-42 {
-    fill: #b64e98;
+.o-layout--gutter-xl {
+  margin: 0 -48px;
 }
 
-.cls-43 {
-    fill: #a74995;
+.o-layout--gutter-xl > .o-layout__item {
+  padding: 0 48px;
 }
 
-.cls-44 {
-    fill: #a94a96;
+
+
+/* reverse horizontal row modifier */
+
+.o-layout--row-reverse {
+  flex-direction: row-reverse;
 }
 
-.cls-45 {
-    fill: #c1539a;
+/* Horizontal alignment modifiers*/
+
+.o-layout--justify-start {
+  justify-content: flex-start;
 }
 
-.cls-46 {
-    fill: #c5559b;
+.o-layout--justify-end {
+  justify-content: flex-end;
 }
 
-.cls-47 {
-    fill: #be5299;
+.o-layout--justify-center {
+  justify-content: center;
 }
 
-.cls-48 {
-    fill: #c2549a;
+.o-layout--justify-space-around {
+  justify-content: space-around;
 }
 
-.cls-49 {
-    fill: #a44a96;
+.o-layout--justify-space-evenly {
+  justify-content: space-evenly;
 }
 
-.cls-50 {
-    fill: #b54e98;
+.o-layout--justify-space-between {
+  justify-content: space-between;
 }
 
-.cls-51 {
-    fill: #a24a96;
+/* Vertical alignment modifiers */
+
+.o-layout--align-start {
+  align-items: flex-start;
 }
 
-.cls-52 {
-    fill: #ba5299;
+.o-layout--align-end {
+  align-items: flex-end;
 }
 
-.cls-53 {
-    fill: #be539a;
+.o-layout--align-center {
+  align-items: center;
 }
 
-.cls-54 {
-    fill: #a94b96;
+.o-layout--align-baseline {
+  align-items: baseline;
 }
 
-.cls-55 {
-    fill: #b45199;
+/* Vertical alignment modifiers that only work if there is one than one flex item */
+
+.o-layout--align-content-start {
+  align-content: start;
 }
 
-.cls-56 {
-    fill: #b04e97;
+.o-layout--align-content-end {
+  align-content: end;
 }
 
-.cls-57 {
-    fill: #ba539a;
+.o-layout--align-content-center {
+  align-content: center;
 }
 
-.cls-58 {
-    fill: #be549a;
+.o-layout--align-content-space-around {
+  align-content: space-around;
 }
 
-.cls-59 {
-    fill: #b45299;
+.o-layout--align-content-space-between {
+  align-content: space-between;
 }
 
-.cls-60 {
-    fill: #fdf9fc;
+/*
+    Objects: List
+    ---
+    Small reusable object to remove default list styling from lists
+*/
+
+.o-list {
+  list-style: none;
+  padding: 0;
 }
 
-.cls-61 {
-    fill: #fdfafd;
+/*
+    Object: Button reset
+    ---
+    Small button reset object
+*/
+
+.o-button-reset {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+
+  /* Corrects inability to style clickable `input` types in iOS */
+  -webkit-appearance: none;
 }
+
+/*------------------------------------*\
+  #COMPONENTS
+\*------------------------------------*/
+
+/*
+    Component: header
+    ---
+    Main header of the website
+*/
+
+.c-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.c-header__nav,
+.c-header__cta {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .c-header__nav,
+  .c-header__cta {
+    display: block;
+  }
+
+  .c-header__nav {
+    margin-right: 20px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/*
+    Component: Nav
+    ---
+    Main navigation of the site
+*/
+.c-nav {
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.c-nav__link {
+  text-decoration: none;
+  font-weight: 600;
+  display: block;
+  padding: 8px 0;
+}
+
+.c-nav__link,
+.c-nav__link:visited,
+.c-nav__link:active {
+  color: #4b4e6b;
+}
+
+.c-nav__link:hover,
+.c-nav__link:focus {
+  color: #046570;
+}
+
+@media (min-width: 992px) {
+  .c-nav__list {
+    display: flex;
+    margin: auto;
+  }
+
+  .c-nav__item--cta {
+    margin-left: 20px;
+  }
+
+  .c-nav__link {
+    padding: 8px 20px;
+  }
+}
+
+/*
+    Component: CTA link
+    ---
+    Small cta link with custom animation
+*/
+.c-link-cta {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: 0px;
+  box-shadow: inset 0 0 0 1px #007c89;
+  background: #007c89;
+}
+
+.c-link-cta,
+.c-link-cta:visited,
+.c-link-cta:active {
+  color: #fff;
+}
+
+.c-link-cta:hover,
+.c-link-cta:focus {
+  color: #fff;
+  background: #046570;
+}
+
+.c-link-cta:active {
+  background-color: #007c89;
+}
+
+.c-link-cta--lg {
+  font-size: 16px;
+  padding: 16px 32px;
+}
+
+/*
+    Component: Lead
+    ---
+    Lead type treatments to style everything that differs from standard typography elements
+*/
+.c-lead {
+  position: relative;
+}
+
+.c-lead--md {
+  font-size: 18px;
+  line-height: 32px;
+}
+
+.c-lead--lg {
+  font-size: 20px;
+  line-height: 32px;
+}
+
+.c-lead--xl {
+  font-size: 32px;
+  line-height: 40px;
+}
+
+@media (min-width: 768px) {
+  .c-lead--xl {
+    font-size: 41px;
+    line-height: 48px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .c-lead--xl {
+    font-size: 52px;
+    line-height: 64px;
+  }
+}
+
+/*
+    Component: Intro
+    ---
+    Intro part on the homepage
+*/
+.c-intro {
+  position: relative;
+  margin-bottom: 72px;
+}
+
+@media (max-width: 991px) {
+  .c-intro__figure {
+    display: none;
+  }
+  .c-intro{
+      left: 0px;
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 56px;
+  }
+}
+
+@media (max-width: 1200px){
+    .c-intro{
+        margin-top: 72px;
+        margin-bottom: 96px;    
+    }
+}
+
+@media (min-width: 1200px) {
+  .c-intro {
+    margin: 48px 28px 96px 28px;
+  }
+
+  .c-intro__body {
+    position: relative;
+    top: 24px;
+  }
+}
+
+/*
+    Component: Logo
+    ---
+    Website main logo
+*/
+.c-logo {
+  height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.c-logo__symbol {
+  height: 100px;
+}
+
+/*------------------------------------*\
+  #UTILITIES
+\*------------------------------------*/
+
+/*
+    Utilities: spacing
+    ---
+    Utility classes to put specific margins and paddings onto elements
+*/
+
+.u-pt-clear {
+  padding-top: 0 !important;
+}
+
+.u-mb-clear {
+  margin-bottom: 0 !important;
+}
+
+.u-mb-xs {
+  margin-bottom: 4px !important;
+}
+
+.u-mb-sm {
+  margin-bottom: 8px !important;
+}
+
+.u-mb-md {
+  margin-bottom: 16px !important;
+}
+
+.u-mb-lg {
+  margin-bottom: 32px !important;
+}
+
+.u-mb-xl {
+  margin-bottom: 48px !important;
+}
+
+/*
+    Utilities: max-width
+    ---
+    Utility classes to put specific max widths onto elements
+*/
+
+.u-max-width-sm {
+  max-width: 36em !important;
+}
+
+.u-max-width-md {
+  max-width: 45em !important;
+}
+
+.u-max-width-lg {
+  max-width: 60em !important;
+}
+
+.u-max-width-xl {
+  max-width: 75em !important;
+}
+
+.u-max-width-none {
+  max-width: none !important;
+}
+
+/*
+    Utility: Flex
+    ---
+    Utility classes to put specific flex properties onto elements
+    Will be mostly used on o-layout__item
+*/
+
+.u-flex-basis-auto {
+  flex-basis: auto !important;
+}
+
+.u-flex-grow-1 {
+  flex-grow: 1 !important;
+}
+
+.u-1-of-2 {
+  flex-basis: calc(100% / 2) !important;
+}
+
+.u-1-of-3 {
+  flex-basis: calc(100% / 3) !important;
+}
+
+.u-2-of-3 {
+  flex-basis: calc(100% / 3 * 2) !important;
+}
+
+.u-1-of-4 {
+  flex-basis: calc(100% / 4) !important;
+}
+
+.u-3-of-4 {
+  flex-basis: calc(100% / 4 * 3) !important;
+}
+
+.u-1-of-5 {
+  flex-basis: calc(100% / 5) !important;
+}
+
+.u-2-of-5 {
+  flex-basis: calc(100% / 5 * 2) !important;
+}
+
+.u-3-of-5 {
+  flex-basis: calc(100% / 5 * 3) !important;
+}
+
+.u-4-of-5 {
+  flex-basis: calc(100% / 5 * 4) !important;
+}
+
+.u-1-of-6 {
+  flex-basis: calc(100% / 6) !important;
+}
+
+.u-5-of-6 {
+  flex-basis: calc(100% / 6 * 5) !important;
+}
+
+@media (min-width: 576px) {
+  .u-1-of-2-bp1 {
+    flex-basis: calc(100% / 2) !important;
+  }
+  .u-1-of-3-bp1 {
+    flex-basis: calc(100% / 3) !important;
+  }
+  .u-2-of-3-bp1 {
+    flex-basis: calc(100% / 3 * 2) !important;
+  }
+  .u-1-of-4-bp1 {
+    flex-basis: calc(100% / 4) !important;
+  }
+  .u-3-of-4-bp1 {
+    flex-basis: calc(100% / 4 * 3) !important;
+  }
+  .u-1-of-5-bp1 {
+    flex-basis: calc(100% / 5) !important;
+  }
+  .u-2-of-5-bp1 {
+    flex-basis: calc(100% / 5 * 2) !important;
+  }
+  .u-3-of-5-bp1 {
+    flex-basis: calc(100% / 5 * 3) !important;
+  }
+  .u-4-of-5-bp1 {
+    flex-basis: calc(100% / 5 * 4) !important;
+  }
+  .u-1-of-6-bp1 {
+    flex-basis: calc(100% / 6) !important;
+  }
+  .u-5-of-6-bp1 {
+    flex-basis: calc(100% / 6 * 5) !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .u-1-of-2-bp2 {
+    flex-basis: calc(100% / 2) !important;
+  }
+  .u-1-of-3-bp2 {
+    flex-basis: calc(100% / 3) !important;
+  }
+  .u-2-of-3-bp2 {
+    flex-basis: calc(100% / 3 * 2) !important;
+  }
+  .u-1-of-4-bp2 {
+    flex-basis: calc(100% / 4) !important;
+  }
+  .u-3-of-4-bp2 {
+    flex-basis: calc(100% / 4 * 3) !important;
+  }
+  .u-1-of-5-bp2 {
+    flex-basis: calc(100% / 5) !important;
+  }
+  .u-2-of-5-bp2 {
+    flex-basis: calc(100% / 5 * 2) !important;
+  }
+  .u-3-of-5-bp2 {
+    flex-basis: calc(100% / 5 * 3) !important;
+  }
+  .u-4-of-5-bp2 {
+    flex-basis: calc(100% / 5 * 4) !important;
+  }
+  .u-1-of-6-bp2 {
+    flex-basis: calc(100% / 6) !important;
+  }
+  .u-5-of-6-bp2 {
+    flex-basis: calc(100% / 6 * 5) !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .u-1-of-2-bp3 {
+    flex-basis: calc(100% / 2) !important;
+  }
+  .u-1-of-3-bp3 {
+    flex-basis: calc(100% / 3) !important;
+  }
+  .u-2-of-3-bp3 {
+    flex-basis: calc(100% / 3 * 2) !important;
+  }
+  .u-1-of-4-bp3 {
+    flex-basis: calc(100% / 4) !important;
+  }
+  .u-3-of-4-bp3 {
+    flex-basis: calc(100% / 4 * 3) !important;
+  }
+  .u-1-of-5-bp3 {
+    flex-basis: calc(100% / 5) !important;
+  }
+  .u-2-of-5-bp3 {
+    flex-basis: calc(100% / 5 * 2) !important;
+  }
+  .u-3-of-5-bp3 {
+    flex-basis: calc(100% / 5 * 3) !important;
+  }
+  .u-4-of-5-bp3 {
+    flex-basis: calc(100% / 5 * 4) !important;
+  }
+  .u-1-of-6-bp3 {
+    flex-basis: calc(100% / 6) !important;
+  }
+  .u-5-of-6-bp3 {
+    flex-basis: calc(100% / 6 * 5) !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .u-1-of-2-bp4 {
+    flex-basis: calc(100% / 2) !important;
+  }
+  .u-1-of-3-bp4 {
+    flex-basis: calc(100% / 3) !important;
+  }
+  .u-2-of-3-bp4 {
+    flex-basis: calc(100% / 3 * 2) !important;
+  }
+  .u-1-of-4-bp4 {
+    flex-basis: calc(100% / 4) !important;
+  }
+  .u-3-of-4-bp4 {
+    flex-basis: calc(100% / 4 * 3) !important;
+  }
+  .u-1-of-5-bp4 {
+    flex-basis: calc(100% / 5) !important;
+  }
+  .u-2-of-5-bp4 {
+    flex-basis: calc(100% / 5 * 2) !important;
+  }
+  .u-3-of-5-bp4 {
+    flex-basis: calc(100% / 5 * 3) !important;
+  }
+  .u-4-of-5-bp4 {
+    flex-basis: calc(100% / 5 * 4) !important;
+  }
+  .u-1-of-6-bp4 {
+    flex-basis: calc(100% / 6) !important;
+  }
+  .u-5-of-6-bp4 {
+    flex-basis: calc(100% / 6 * 5) !important;
+  }
+}
+
+/*------------------------------------*\
+  #MEDIA
+\*------------------------------------*/
+
+/*
+    Print styles.
+    ---
+    Inlined to avoid the additional HTTP request:
+    http://www.phpied.com/delay-loading-your-print-css/
+*/
+
+@media print {
+  *,
+  *:before,
+  *:after {
+    background: transparent !important;
+    color: #000 !important;
+    /* Black prints faster:
+                                   http://www.sanbeiji.com/archives/953 */
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  a[href]:after {
+    content: ' (' attr(href) ')';
+  }
+  abbr[title]:after {
+    content: ' (' attr(title) ')';
+  }
+  /*
+     * Don't show links that are fragment identifiers,
+     * or use the `javascript:` pseudo protocol
+     */
+  a[href^='#']:after,
+  a[href^='javascript:']:after {
+    content: '';
+  }
+  pre {
+    white-space: pre-wrap !important;
+  }
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  /*
+     * Printing Tables:
+     * http://css-discuss.incutio.com/wiki/Printing_Tables
+     */
+  thead {
+    display: table-header-group;
+  }
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+
+  }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
+

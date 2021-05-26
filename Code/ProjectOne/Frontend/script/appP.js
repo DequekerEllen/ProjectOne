@@ -8,12 +8,16 @@ const listenToSocket = function () {
       console.log("verbonden met socket webserver");
     });
     socket.on("B2F_waarde_device", function (jsonObject) {
-        
         console.log("Dit is de Waarde");
         console.log(jsonObject);
-        htmlds18.innerHTML = ''
-        htmlds18.innerHTML = `${jsonObject.waarde} °C` ;
-      });
+        htmlds18.innerHTML += `<p class="js-waarde"> ${jsonObject.waarde} °C </p>`;
+        let lengte = htmlds18.querySelectorAll('.js-waarde');
+        let x = lengte.length;
+        if (x >= 10){
+          htmlds18.innerHTML = '';
+          htmlds18.innerHTML += `<p class="js-waarde"> ${jsonObject.waarde} °C </p>`;
+        }
+    });
 }
 
 //#region ***  Init / DOMContentLoaded                  ***********
