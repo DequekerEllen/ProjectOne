@@ -58,7 +58,7 @@ def waarde():
         temp = read_temp()
         print(temp)
         date = datetime.now()+timedelta(hours=1)
-        DataRepository.toevoegen_historiek(1, temp, 0, date)
+        DataRepository.toevoegen_historiek(1, 1, temp, date)
         socketio.emit('B2F_waarde_device', {'waarde': temp}, broadcast=True)
         time.sleep(10)
 

@@ -11,7 +11,19 @@ class DataRepository:
         return
 
     @staticmethod
-    def toevoegen_historiek(DeviceID, Waarde, Status, Datum):
-        sql = "INSERT INTO historiek ( DeviceID, Waarde, Status, Datum) VALUES (%s, %s, %s, %s)"
-        params = [DeviceID, Waarde, Status, Datum]
+    def toevoegen_historiek(DeviceID, ActieID, Waarde, Datum):
+        sql = "INSERT INTO historiek (DeviceID, ActieID, Waarde, Datum) VALUES (%s, %s, %s, %s)"
+        params = [DeviceID, ActieID, Waarde, Datum]
         return Database.execute_sql(sql, params)
+
+    @staticmethod
+    def toevoegen_kat(Naam, RfidNummer, Status):
+        sql = "INSERT INTO kat (Naam, RfidNummer, Status) VALUES (%s, %s, %s)"
+        params = [Naam, RfidNummer, Status]
+        return Database.execute_sql(sql, params)
+
+    @staticmethod
+    def read_status_luik(DeviceID):
+        sql = "SELECT ActieID FROM historiek WHERE DeviceID = %s"
+        params = [DeviceID]
+        return Database.get_one_row(sql, params)
