@@ -1,3 +1,9 @@
+.alleWaarden{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
 .metingen{
     border: 1px solid white;
     border-radius: 60px;
@@ -6,6 +12,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin: 32px;
 }
 
 

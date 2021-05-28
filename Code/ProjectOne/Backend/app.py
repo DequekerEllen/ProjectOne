@@ -1,3 +1,4 @@
+from helpers.klasseMCP import MCP
 import re
 import time
 from datetime import datetime, timedelta
@@ -7,6 +8,8 @@ from flask_socketio import SocketIO, emit, send
 from flask import Flask, jsonify
 
 from repositories.DataRepository import DataRepository
+
+mcp = MCP(1, 0)
 
 
 def read_temp():
@@ -34,9 +37,7 @@ def error_handler(e):
     print(e)
 
 
-
 print("**** Program started ****")
-
 
 
 # API ENDPOINTS
@@ -51,22 +52,31 @@ def hallo():
 def initial_connection():
     print('A new client connect')
     # # Send to the client!
-   
+
+
 def waarde():
     while True:
-        print('*** Waarde doorgeven **')
+        print('*** Temp doorgeven **')
         temp = read_temp()
         print(temp)
         date = datetime.now()+timedelta(hours=1)
         DataRepository.toevoegen_historiek(1, 1, temp, date)
-        socketio.emit('B2F_waarde_device', {'waarde': temp}, broadcast=True)
+        socketio.emit('B2F_waardeTemp_device', {
+                      'waarde': temp}, broadcast=True)
+
+        print('*** Licht doorgeven **')
+        licht_percentage = mcp.read_channel(1)
+        print(licht_percentage)
+        date = datetime.now()+timedelta(hours=1)
+        DataRepository.toevoegen_historiek(2, 8, licht_percentage, date)
+        socketio.emit('B2F_waardeLicht_device', {
+                      'waarde': licht_percentage}, broadcast=True)
         time.sleep(10)
 
 
 thread = threading.Timer(0.5, waarde)
 thread.start()
 
-
-    # sensorfile.close()
+# sensorfile.close()
 if __name__ == '__main__':
     socketio.run(app, debug=False, host='0.0.0.0')

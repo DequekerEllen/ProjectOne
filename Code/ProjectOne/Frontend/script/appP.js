@@ -1,20 +1,20 @@
 const lanIP = `${window.location.hostname}:5000`;
 const socket = io(`http://${lanIP}`);
 
-let htmlds18;
+let htmlds18, htmlLdr, htmlRain;
 
-const waardeVeranderenStats = function(object){
-  htmlds18.innerHTML = '';
-  htmlds18.innerHTML = `<p class="js-waarde"> ${object.waarde} °C </p>`;
+const waardeVeranderenStats = function(html, object, value){
+  html.innerHTML = '';
+  html.innerHTML = `<p class="js-waarde"> ${object.waarde} ${value} </p>`;
 }
 
-const waardeHistoriek = function(object){
-  htmlds18.innerHTML += `<p class="js-waarde"> ${object.waarde} °C </p>`;
-  let lengte = htmlds18.querySelectorAll('.js-waarde');
+const waardeHistoriek = function(html, object, value){
+  html.innerHTML += `<p class="js-waarde"> ${object.waarde} ${value} </p>`;
+  let lengte = html.querySelectorAll('.js-waarde');
   let x = lengte.length;
   if (x >= 10){
-    htmlds18.innerHTML = '';
-    htmlds18.innerHTML += `<p class="js-waarde"> ${object.waarde} °C </p>`;
+    html.innerHTML = '';
+    html.innerHTML += `<p class="js-waarde"> ${object.waarde} ${value} </p>`;
   }
 }
 
@@ -23,19 +23,20 @@ const listenToSocket = function () {
     socket.on("connected", function () {
       console.log("verbonden met socket webserver");
     });
-    socket.on("B2F_waarde_device", function (jsonObject) {
+    socket.on("B2F_waardeTemp_device", function (jsonObject) {
         console.log("Dit is de Waarde");
         console.log(jsonObject);
-        waardeVeranderenStats(jsonObject);
-        // htmlds18.innerHTML = `<p class="js-waarde"> ${jsonObject.waarde} °C </p>`;
-        // let lengte = htmlds18.querySelectorAll('.js-waarde');
-        // let x = lengte.length;
-        // if (x >= 10){
-        //   htmlds18.innerHTML = '';
-        //   htmlds18.innerHTML = `<p class="js-waarde"> <img src="img/thermometer.svg" alt=""> ${jsonObject.waarde} °C </p>`;
-        // }
+        waardeVeranderenStats(htmlds18, jsonObject, "°C");
     });
+    socket.on("B2F_waardeLicht_device", function (jsonObject) {
+      console.log("Dit is de Waarde");
+      console.log(jsonObject);
+      waardeVeranderenStats(htmlLdr, jsonObject, "%");
+
+      
+  });
 }
+
 
 
 
@@ -45,6 +46,8 @@ const init = function () {
     // Get some DOM, we created empty earlier.
 
     htmlds18 = document.querySelector('.js-dataTemp');
+    htmlLdr = document.querySelector('.js-dataLdr');
+    htmlRain = document.querySelector('.js-dataRain');
     console.log(htmlds18);
     //deze code wordt gestart vanaf index.html
     
