@@ -8,9 +8,10 @@
     <title>Smart Hatch - Historiek - Ellen Dequeker</title>
 
     <!-- Style -->
-    <link rel="stylesheet" href="style/popUp.css">
     <link rel="stylesheet" href="style/screenP.css">
     <link rel="stylesheet" href="style/svgColor.css">
+    <link rel="stylesheet" href="style/stats.css">
+
 
     <!-- Script -->
     <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"
@@ -185,8 +186,9 @@
                 <div class="c-header__nav">
                     <nav class="c-nav">
                         <ul class="o-list c-nav__list">
-                            <li class="c-nav__item"><a href="index.html" class="c-nav__link">Hatch</a></li>
-                            <li class="c-nav__item"><a href="historiek.html" class="c-nav__link">Historiek</a></li>
+                            <li class="c-nav__item"><a href="index.html" class="c-nav__link">Manual</a></li>
+                            <li class="c-nav__item"><a href="cats.html" class="c-nav__link">Cats</a></li>
+                            <li class="c-nav__item"><a href="stats.html" class="c-nav__link">Stats</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -197,9 +199,32 @@
         <div class="o-container">
             <div class="c-intro o-layout--gutter-xl o-layout--align-center">
                 <div class="c-intro__body o-layout__item u-2-of-3-bp2 u-1-of-2-bp3">
-                    <div class="sensorTemp u-max-width-sm">
-                        <h2>Data temperatuursensor DS18B20: </h2>
-                        <div class="js-data"></div>
+                    <div class="metingen sensorTemp u-max-width-sm">
+                        <h2>Temperature</h2>
+                        <div class="waarde">
+                            <img src="img/thermometer.svg" alt="">
+                            <div class="js-dataTemp">
+                                <p class="js-waarde"> ... °C</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metingen sensorTemp u-max-width-sm">
+                        <h2>Light intensity</h2>
+                        <div class="waarde">
+                            <img src="img/lights.svg" alt="">
+                            <div class="js-dataLdr">
+                                <p class="js-waarde"> ... %</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metingen sensorTemp u-max-width-sm">
+                        <h2>Amount of rainfall</h2>
+                        <div class="waarde">
+                            <img class="rain" src="img/rain.svg" alt="">
+                            <div class="js-dataRain">
+                                <p class="js-waarde"> ... </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -30,6 +30,10 @@ html {
   
 }
 
+html, body{
+  max-height: 100px;
+}
+
 *,
 *:before,
 *:after {

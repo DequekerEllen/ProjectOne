@@ -1,0 +1,33 @@
+.metingen{
+    border: 1px solid white;
+    border-radius: 60px;
+    padding: 24px;
+    width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+.waarde{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.metingen h2{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+img{
+    width: 9%;
+    padding-right: 5px;
+}
+
+
+.rain{
+    width: 20%;
+}
