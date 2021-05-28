@@ -19,6 +19,7 @@ def read_temp():
     for i, line in enumerate(sensorfile):
         if i == 1:  # 2de lijn
             value = int(line.strip('\n')[line.find('t=')+2:])/1000.0
+            value = format(value, '.1f')
     return value
 
 
