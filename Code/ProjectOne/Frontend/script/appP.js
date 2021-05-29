@@ -24,17 +24,20 @@ const listenToSocket = function () {
       console.log("verbonden met socket webserver");
     });
     socket.on("B2F_waardeTemp_device", function (jsonObject) {
-        console.log("Dit is de Waarde");
-        console.log(jsonObject);
-        waardeVeranderenStats(htmlds18, jsonObject, "°C");
+      console.log("Dit is de Waarde");
+      console.log(jsonObject);
+      waardeVeranderenStats(htmlds18, jsonObject, "°C");
     });
     socket.on("B2F_waardeLicht_device", function (jsonObject) {
       console.log("Dit is de Waarde");
       console.log(jsonObject);
       waardeVeranderenStats(htmlLdr, jsonObject, "%");
-
-      
-  });
+    });
+    socket.on("B2F_waardeRain_device", function (jsonObject) {
+      console.log("Dit is de Waarde");
+      console.log(jsonObject);
+      waardeVeranderenStats(htmlRain, jsonObject, " ");
+    });
 }
 
 

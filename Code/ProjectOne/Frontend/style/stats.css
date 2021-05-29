@@ -8,7 +8,7 @@
     border: 1px solid white;
     border-radius: 60px;
     padding: 24px;
-    width: 40%;
+    width: 30%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -37,8 +37,4 @@ img{
 
 .rain{
     width: 20%;
-}
-
-html{
-    height: 300%;
 }

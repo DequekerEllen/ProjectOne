@@ -33,8 +33,11 @@ class MCP:
             # ldr geeft hoge waardes bij weinig licht, dus 1023 - result om logische waarde te krijgen
             result = 1023 - result
             # print(format(value_to_percentage(result), '.2f'))
-            percent = format(value_to_percentage(result), '.1f')
-        return percent
+            result = format(value_to_percentage(result), '.1f')
+        elif ch == 2:
+            result = 1023 - result
+
+        return result
 
     def close_spi(self):
         self.spi.close()

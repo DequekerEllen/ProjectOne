@@ -23,6 +23,15 @@ def read_temp():
     return value
 
 
+def omzetten_neerslag(waarde):
+    if waarde == 0:
+        return "None"
+    if waarde > 0 & waarde < 500:
+        return "Medium"
+    if waarde > 500:
+        return "A lot"
+
+
 # Code voor Flask
 
 app = Flask(__name__)
@@ -72,6 +81,16 @@ def waarde():
         DataRepository.toevoegen_historiek(2, 8, licht_percentage, date)
         socketio.emit('B2F_waardeLicht_device', {
                       'waarde': licht_percentage}, broadcast=True)
+
+        print('*** Neerslag doorgeven **')
+        neerslag = mcp.read_channel(2)
+        print(neerslag)
+        woord_neerslag = omzetten_neerslag(neerslag)
+        print(woord_neerslag)
+        date = datetime.now()+timedelta(hours=1)
+        DataRepository.toevoegen_historiek(3, 2, neerslag, date)
+        socketio.emit('B2F_waardeRain_device', {
+                      'waarde': woord_neerslag}, broadcast=True)
         time.sleep(10)
 
 
