@@ -3,6 +3,7 @@ const socket = io(`http://${lanIP}`);
 
 let htmlds18, htmlLdr, htmlRain;
 
+
 const waardeVeranderenStats = function(html, object, value){
   html.innerHTML = '';
   html.innerHTML = `<p class="js-waarde"> ${object.waarde} ${value} </p>`;
@@ -39,7 +40,6 @@ const listenToSocket = function () {
       waardeVeranderenStats(htmlRain, jsonObject, " ");
     });
 }
-
 
 
 
