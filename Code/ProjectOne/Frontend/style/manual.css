@@ -1,0 +1,16 @@
+h2{
+    font-size: 56px;
+}
+
+p{
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+.switch{
+    background-color: purple;
+    color: white;
+    text-decoration: none;
+    padding: 16px 24px;
+    border-radius: 30px;
+}
