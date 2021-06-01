@@ -53,6 +53,13 @@ def rainbow_cycle(wait):
         pixels.show()
         time.sleep(wait)
 
+def hatch(state):
+    if state == 0:
+        pixels.fill((255, 0, 0))
+    elif state == 1:
+        pixels.fill((0, 255, 0))
+
+
 
 while True:
     # Comment this line out if you have RGBW/GRBW NeoPixels
@@ -61,6 +68,9 @@ while True:
     # pixels.fill((255, 0, 0, 0))
     # pixels.show()
     # time.sleep(1)
+    hatch(1)
+    time.sleep(1)
+    hatch(0)
 
     # Comment this line out if you have RGBW/GRBW NeoPixels
     # pixels.fill((0, 255, 0))
@@ -76,4 +86,4 @@ while True:
     # pixels.show()
     # time.sleep(1)
 
-    rainbow_cycle(0.001)  # rainbow cycle with 1ms delay per step
+    # rainbow_cycle(0.001)  # rainbow cycle with 1ms delay per step
