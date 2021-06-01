@@ -143,12 +143,12 @@ a {
 
 a:visited,
 a:active {
-  color: #de609f;
+  color: #fff;
 }
 
-a:hover,
-a:focus {
-  color: #de609f;
+a:hover{
+  color: #fff;
+  background-color: #E35F9F;
 }
 
 @media (min-width: 992px) {

@@ -1,8 +1,14 @@
 const lanIP = `${window.location.hostname}:5000`;
 const socket = io(`http://${lanIP}`);
 
-let htmlds18, htmlLdr, htmlRain;
+let htmlds18, htmlLdr, htmlRain, htmlFilling, htmlPaw, htmlPawShade, htmlRed, htmlRedShade;
 
+const clearClassList = function (el, klasse) {
+  el.classList.remove(`${klasse}`);
+};
+const addClassList = function (el, klasse) {
+  el.classList.add(`${klasse}`);
+};
 
 const waardeVeranderenStats = function(html, object, value){
   html.innerHTML = '';
@@ -47,12 +53,21 @@ const listenToSocket = function () {
 const init = function () {
     console.log('DOM geladen');
     // Get some DOM, we created empty earlier.
-
+    // sensor data
     htmlds18 = document.querySelector('.js-dataTemp');
     htmlLdr = document.querySelector('.js-dataLdr');
     htmlRain = document.querySelector('.js-dataRain');
+    // house svg fillings on/off
+    htmlFilling = document.querySelector('.js-filling');
+    htmlPaw = document.querySelector('.js-paw');
+    htmlPawShade = document.querySelector('.js-paw-shade');
+    htmlRed = document.querySelector('.js-red');
+    htmlRedShade = document.querySelector('.js-red-shade');
+    //console
     console.log(htmlds18);
+
     //deze code wordt gestart vanaf index.html
+
     
     if(htmlds18){
       listenToSocket();

@@ -1,16 +1,53 @@
 h2{
-    font-size: 56px;
+    font-size: 64px;
 }
 
 p{
     font-size: 24px;
-    margin-bottom: 40px;
+    margin: 80px 0 40px 0;
+    width: 80%;
 }
 
 .switch{
-    background-color: purple;
+    background-color: #874292;
     color: white;
     text-decoration: none;
-    padding: 16px 24px;
+    padding: 16px 32px;
     border-radius: 30px;
 }
+
+.filling_on{
+    opacity: 1;
+    transform: translate(0) scale(1);
+    transition: all 0.14s ease-in;
+    fill: #edf4fa;
+}
+
+.paw_on{
+    opacity: 1;
+    transform: translate(0) scale(1);
+    transition: all 0.14s ease-in;
+    fill: #365e7d;
+}
+
+.paw_shade_on{
+    opacity: 1;
+    transform: translate(0) scale(1);
+    transition: all 0.14s ease-in;
+    fill: #407093;
+}
+
+.red_on{
+    opacity: 1;
+    transform: translate(0) scale(1);
+    transition: all 0.14s ease-in;
+    fill: #da4a54;
+}
+
+.red_shade_on{
+    opacity: 1;
+    transform: translate(0) scale(1);
+    transition: all 0.14s ease-in;
+    fill: #d82e3d;
+}
+
