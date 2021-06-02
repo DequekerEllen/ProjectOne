@@ -18,7 +18,7 @@ html {
   line-height: 1.5;
   font-family: 'General Sans', Helvetica, arial, sans-serif;
   background: linear-gradient(to top right, #2b5876, #4e4376); 
-  color: rgb(211, 211, 211);
+  color: rgb(230, 230, 230);
   height: 155%;
 }
 
@@ -44,7 +44,7 @@ html {
 
 ::selection {
   background: #de609f;
-  color: white;
+  color: rgb(230, 230, 230);
   text-shadow: none;
 }
 
@@ -113,7 +113,7 @@ figure {
   table,
   address,
   figure {
-    margin: 0 0 24px;
+    margin: 50px 0 0 0;
   }
 
 }
@@ -162,11 +162,11 @@ a {
 
 a:visited,
 a:active {
-  color: #fff;
+  color: rgb(230, 230, 230);
 }
 
 a:hover{
-  color: #fff;
+  color: rgb(230, 230, 230);
 }
 
 @media (min-width: 992px) {
@@ -197,11 +197,7 @@ a:hover{
   padding-top: 0px;
 }
 
-/* color modifiers */
 
-.o-row--primary-x-light {
-  background-color: #f2faff;
-}
 
 /* size modifiers */
 
@@ -491,7 +487,6 @@ a:hover{
   }
 
   .c-header__nav {
-    margin-right: 20px;
     display: flex;
     justify-content: center;
   }
@@ -517,7 +512,7 @@ a:hover{
 .c-nav__link,
 .c-nav__link:visited,
 .c-nav__link:active {
-  color: rgb(211, 211, 211);
+  color: rgb(230, 230, 230);
 }
 
 .c-nav__link:hover,
@@ -540,6 +535,8 @@ a:hover{
   }
 }
 
+
+
 /*
     Component: CTA link
     ---
@@ -560,11 +557,11 @@ a:hover{
 .c-link-cta,
 .c-link-cta:visited,
 .c-link-cta:active {
-  color: #fff;
+  color: rgb(230, 230, 230);
 }
 
 .c-link-cta:hover {
-  color: #fff;
+  color: rgb(230, 230, 230);
   background: #ad50bb;
 }
 
@@ -646,7 +643,7 @@ a:hover{
 
 @media (min-width: 1200px) {
   .c-intro {
-    margin: -50px 28px 0px 28px;
+    margin: -60px 28px 0px 28px;
   }
 
   .c-intro__body {

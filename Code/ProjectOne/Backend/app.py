@@ -10,7 +10,7 @@ from flask import Flask, jsonify
 from repositories.DataRepository import DataRepository
 from helpers.klasseMCP import MCP
 from helpers.klasseLCD import Main
-from helpers.KlasseNeo import Neo
+# from helpers.KlasseNeo import Neo
 
 # Code voor Hardware
 GPIO.setwarnings(False)
@@ -19,7 +19,7 @@ GPIO.setmode(GPIO.BCM)
 
 mcp = MCP(1, 0)
 lcd = Main()
-neo = Neo()
+# neo = Neo()
 
 
 def read_temp():
@@ -73,7 +73,7 @@ def initial_connection():
     print('A new client connect')
     # # Send to the client!
 
-neo.rainbow_cycle(0.001)
+# neo.rainbow_cycle(0.001)
 
 def waarde():
     lcd.show_status()
