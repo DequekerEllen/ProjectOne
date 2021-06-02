@@ -75,6 +75,7 @@ const listenToClickHatch = function(){
       addClassList(htmlRedShade, "red_shade_on");
       addClassList(htmlRedSmall, "red_on");
       addClassList(htmlRedShadeSmall, "red_shade_on");
+      htmlSwitch.innerHTML = "Close"
       state = 1
       console.log("open")
     }
@@ -95,6 +96,7 @@ const listenToClickHatch = function(){
       hatchCloseSvg(htmlRedShade);
       hatchCloseSvg(htmlRedSmall);
       hatchCloseSvg(htmlRedShadeSmall);
+      htmlSwitch.innerHTML = "Open"
       state = 0
       console.log("closed")
 
