@@ -19,7 +19,13 @@ html {
   font-family: 'General Sans', Helvetica, arial, sans-serif;
   background: linear-gradient(to top right, #2b5876, #4e4376); 
   color: rgb(211, 211, 211);
-  height: 105%;
+  height: 155%;
+}
+
+@media (min-width: 992px) {
+  html {
+    height: 110%;
+  }
 }
 
 
@@ -37,7 +43,7 @@ html {
  */
 
 ::selection {
-  background: #e85e00;
+  background: #de609f;
   color: white;
   text-shadow: none;
 }
@@ -96,7 +102,20 @@ dl,
 table,
 address,
 figure {
-  margin: 0 0 24px;
+  margin: -80px 0 0 0;
+}
+
+@media (min-width: 992px) {
+  p,
+  ol,
+  ul,
+  dl,
+  table,
+  address,
+  figure {
+    margin: 0 0 24px;
+  }
+
 }
 
 ul,
@@ -137,7 +156,7 @@ hr {
 }
 
 a {
-  color: #de609f;
+  color: #4e4376;
   transition: all 0.1s ease-in-out;
 }
 
@@ -148,7 +167,6 @@ a:active {
 
 a:hover{
   color: #fff;
-  background-color: #E35F9F;
 }
 
 @media (min-width: 992px) {
@@ -173,6 +191,10 @@ a:hover{
 .o-row {
   padding: 24px 24px 0;
   display: flow-root;
+}
+
+.o-row--intro{
+  padding-top: 0px;
 }
 
 /* color modifiers */
@@ -278,6 +300,12 @@ a:hover{
   flex-basis: 100%;
 }
 
+@media (min-width: 992px) {
+  .o-layout__item {
+    flex-basis: 40%;
+  }
+}
+
 
 /* gutter modifiers, these affect o-layout__item too */
 
@@ -306,13 +334,21 @@ a:hover{
 }
 
 .o-layout--gutter-xl {
-  margin: 0 -48px;
+  margin: 0 0;
 }
 
 .o-layout--gutter-xl > .o-layout__item {
-  padding: 0 48px;
+  padding: 0 0 0 0;
 }
 
+@media (min-width: 992px) {
+  .o-layout--gutter-xl {
+    margin: 0 -48px;
+  }
+  .o-layout--gutter-xl > .o-layout__item {
+    padding: 0 0 0 48px;
+  }
+}
 
 
 /* reverse horizontal row modifier */
@@ -486,7 +522,7 @@ a:hover{
 
 .c-nav__link:hover,
 .c-nav__link:focus {
-  color: #de609f;
+  color: #857f9b;
 }
 
 @media (min-width: 992px) {
@@ -517,8 +553,8 @@ a:hover{
   font-weight: 600;
   padding: 8px 20px;
   border-radius: 0px;
-  box-shadow: inset 0 0 0 1px #007c89;
-  background: #007c89;
+  box-shadow: inset 0 0 0 1px #ad50bb;
+  background: #874292;
 }
 
 .c-link-cta,
@@ -527,14 +563,13 @@ a:hover{
   color: #fff;
 }
 
-.c-link-cta:hover,
-.c-link-cta:focus {
+.c-link-cta:hover {
   color: #fff;
-  background: #046570;
+  background: #ad50bb;
 }
 
 .c-link-cta:active {
-  background-color: #007c89;
+  background-color: #874292;
 }
 
 .c-link-cta--lg {
@@ -605,13 +640,13 @@ a:hover{
 @media (max-width: 1200px){
     .c-intro{
         margin-top: 72px;
-        margin-bottom: 96px;    
+        margin-bottom: 0px;    
     }
 }
 
 @media (min-width: 1200px) {
   .c-intro {
-    margin: 48px 28px 96px 28px;
+    margin: -50px 28px 0px 28px;
   }
 
   .c-intro__body {

@@ -1,6 +1,6 @@
-from helpers.klasseMCP import MCP
 import re
 import time
+from RPi import GPIO
 from datetime import datetime, timedelta
 import threading
 from flask_cors import CORS
@@ -8,8 +8,18 @@ from flask_socketio import SocketIO, emit, send
 from flask import Flask, jsonify
 
 from repositories.DataRepository import DataRepository
+from helpers.klasseMCP import MCP
+from helpers.klasseLCD import Main
+from helpers.KlasseNeo import Neo
+
+# Code voor Hardware
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)
+
 
 mcp = MCP(1, 0)
+lcd = Main()
+neo = Neo()
 
 
 def read_temp():
@@ -63,8 +73,11 @@ def initial_connection():
     print('A new client connect')
     # # Send to the client!
 
+neo.rainbow_cycle(0.001)
 
 def waarde():
+    lcd.show_status()
+
     while True:
         print('*** Temp doorgeven **')
         temp = read_temp()
@@ -93,10 +106,11 @@ def waarde():
                       'waarde': woord_neerslag}, broadcast=True)
         time.sleep(10)
 
-
 thread = threading.Timer(0.5, waarde)
 thread.start()
 
-# sensorfile.close()
+
+
+
 if __name__ == '__main__':
     socketio.run(app, debug=False, host='0.0.0.0')
