@@ -46,7 +46,7 @@ class Neo:
         for j in range(255):
             for i in range(num_pixels):
                 pixel_index = (i * 256 // num_pixels) + j
-                pixels[i] = self.wheel( pixel_index & 255)
+                pixels[i] = self.wheel(Neo, pixel_index & 255)
             pixels.show()
             time.sleep(wait)
 
@@ -62,7 +62,7 @@ class Neo:
             print("wrong value")
 
 
-# while True:
+while True:
 #     # Comment this line out if you have RGBW/GRBW NeoPixels
 #     # pixels.fill((255, 0, 0))
 #     # Uncomment this line if you have RGBW/GRBW NeoPixels
@@ -84,4 +84,4 @@ class Neo:
 #     # pixels.show()
 #     time.sleep(1)
 
-#     # rainbow_cycle(0.001)  # rainbow cycle with 1ms delay per step
+    Neo.rainbow_cycle(Neo, 0.001)  # rainbow cycle with 1ms delay per step
