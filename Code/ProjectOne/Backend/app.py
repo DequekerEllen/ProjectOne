@@ -8,42 +8,29 @@ from flask_socketio import SocketIO, emit, send
 from flask import Flask, jsonify
 
 from repositories.DataRepository import DataRepository
-from helpers.klasseMCP import MCP
-from helpers.klasseLCD import Main
+from repositories.klasseMCP import MCP
+from repositories.klasseLCD import Main
+from repositories.klasseOneWire import Wire
+from repositories.klasseSlot import Lock
 # from helpers.KlasseNeo import Neo
+
+magnet = 23
 
 # Code voor Hardware
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
+GPIO.setup(magnet, GPIO.OUT)
 
 
+# klasses
 mcp = MCP(1, 0)
 lcd = Main()
+wire = Wire()
+lock = Lock()
 # neo = Neo()
 
 
-def read_temp():
-    global value
-    sensor_file_name = '/sys/bus/w1/devices/28-0216146ad6ee/w1_slave'
-    sensorfile = open(sensor_file_name, 'r')
-    for i, line in enumerate(sensorfile):
-        if i == 1:  # 2de lijn
-            value = int(line.strip('\n')[line.find('t=')+2:])/1000.0
-            value = format(value, '.1f')
-    return value
-
-
-def omzetten_neerslag(waarde):
-    if waarde == 0:
-        return "None"
-    if waarde > 0 & waarde < 500:
-        return "Medium"
-    if waarde > 500:
-        return "A lot"
-
-
 # Code voor Flask
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'geheim!'
 socketio = SocketIO(app, cors_allowed_origins="*",
@@ -61,8 +48,6 @@ print("**** Program started ****")
 
 
 # API ENDPOINTS
-
-
 @app.route('/')
 def hallo():
     return "Server is running, er zijn momenteel geen API endpoints beschikbaar."
@@ -73,14 +58,12 @@ def initial_connection():
     print('A new client connect')
     # # Send to the client!
 
-# neo.rainbow_cycle(0.001)
 
 def waarde():
-    lcd.show_status()
 
     while True:
         print('*** Temp doorgeven **')
-        temp = read_temp()
+        temp = wire.read_temp()
         print(temp)
         date = datetime.now()+timedelta(hours=1)
         DataRepository.toevoegen_historiek(1, 1, temp, date)
@@ -98,7 +81,7 @@ def waarde():
         print('*** Neerslag doorgeven **')
         neerslag = mcp.read_channel(2)
         print(neerslag)
-        woord_neerslag = omzetten_neerslag(neerslag)
+        woord_neerslag = wire.omzetten_neerslag(neerslag)
         print(woord_neerslag)
         date = datetime.now()+timedelta(hours=1)
         DataRepository.toevoegen_historiek(3, 2, neerslag, date)
@@ -106,10 +89,40 @@ def waarde():
                       'waarde': woord_neerslag}, broadcast=True)
         time.sleep(10)
 
-thread = threading.Timer(0.5, waarde)
+
+def slot():
+    lcd.show_status()
+
+    while True:
+        temp = float(wire.read_temp())
+        neerslag = float(mcp.read_channel(2))
+        licht_percentage = float(mcp.read_channel(1))
+        state = lock.state_hatch()
+        lock.hatch(state, magnet)
+        lock.change_state(state, temp, licht_percentage, neerslag)
+        print(state)
+        time.sleep(2)
+
+
+thread = threading.Timer(0.2, waarde)
+thread2 = threading.Timer(0.01, slot)
 thread.start()
+thread2.start()
 
 
+@socketio.on('F2B_switch')
+def switch_hatch(data):
+    # Ophalen van de data
+    new_status = data['new_status']
+    new_waarde = data['new_waarde']
+    date = datetime.now()+timedelta(hours=1)
+    print(f"Magneet wordt geswitcht naar {new_status}")
+    # Stel de status in op de DB
+    DataRepository.toevoegen_historiek(6, new_status, new_waarde, date)
+
+    # Vraag de (nieuwe) status op van de lamp en stuur deze naar de frontend.
+    data = lock.state_hatch()
+    socketio.emit('B2F_verandering_magnet', {'status': data}, broadcast=True)
 
 
 if __name__ == '__main__':

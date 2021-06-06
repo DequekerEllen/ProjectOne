@@ -115,6 +115,7 @@ CREATE TABLE `kat` (
   `Naam` varchar(45) DEFAULT NULL,
   `RfidNummer` varchar(45) NOT NULL,
   `Status` tinyint NOT NULL,
+  `Gepaseerd` INT DEFAULT NULL,
   PRIMARY KEY (`KatID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

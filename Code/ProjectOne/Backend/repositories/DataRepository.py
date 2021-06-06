@@ -12,7 +12,7 @@ class DataRepository:
 
     @staticmethod
     def read_status_luik(DeviceID):
-        sql = "SELECT ActieID FROM historiek WHERE DeviceID = %s"
+        sql = "SELECT ActieID FROM historiek WHERE DeviceID = %s ORDER BY Datum DESC LIMIT 1"
         params = [DeviceID]
         return Database.get_one_row(sql, params)
 
@@ -20,6 +20,12 @@ class DataRepository:
     def read_katid_by_rfid(rfid):
         sql = "SELECT KatID FROM kat WHERE RfidNummer = %s"
         params = [rfid]
+        return Database.get_one_row(sql, params)
+
+    @staticmethod
+    def read_gepaseerd(katid):
+        sql = "SELECT Gepaseerd FROM kat WHERE KatID = %s"
+        params = [katid]
         return Database.get_one_row(sql, params)
 
     @staticmethod
@@ -35,7 +41,7 @@ class DataRepository:
         return Database.execute_sql(sql, params)
 
     @staticmethod
-    def update_status_kat(id, status):
-        sql = "UPDATE kat SET status = %s WHERE KatID = %s"
-        params = [status, id]
+    def update_status_kat(id, status, gepaseerd):
+        sql = "UPDATE kat SET status = %s, Gepaseerd = %s WHERE KatID = %s"
+        params = [status, gepaseerd, id]
         return Database.execute_sql(sql, params)
