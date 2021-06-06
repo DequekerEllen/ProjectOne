@@ -2,7 +2,7 @@ const lanIP = `${window.location.hostname}:5000`;
 const socket = io(`http://${lanIP}`);
 
 let htmlSwitch, htmlds18, htmlLdr, htmlRain, htmlFilling, htmlPaw, htmlPawShade, htmlRed, 
-htmlRedShade, htmlRedSmall, htmlRedShadeSmall, htmldata;
+htmlRedShade, htmlRedSmall, htmlRedShadeSmall;
 
 const clearClassList = function (el, klasse) {
   el.classList.remove(`${klasse}`);
@@ -95,7 +95,7 @@ const listenToSocket = function () {
 
     socket.on("B2F_verandering_magnet", function (jsonObject) {
       console.log("De status van het slot is veranderd");
-      console.log(jsonObject.status);
+      console.log(`waarde: ${jsonObject}`);
       const knop = htmlSwitch
       knop.dataset.status = jsonObject.status;
   
@@ -112,7 +112,7 @@ const listenToClickHatch = function(){
   htmlSwitch.addEventListener("click", function () {
     let newstate;
     let waarde;
-    console.log(this.dataset.status);
+    // console.log(this.dataset.status);
 
     if (this.dataset.status == 4){
       LockOff();
@@ -146,8 +146,9 @@ const init = function () {
     htmlds18 = document.querySelector('.js-dataTemp');
     htmlLdr = document.querySelector('.js-dataLdr');
     htmlRain = document.querySelector('.js-dataRain');
-    // house svg fillings on/off
+    // switch knop
     htmlSwitch = document.querySelector('.js-switch')
+    // house svg fillings on/off
     htmlFilling = document.querySelector('.js-filling');
     htmlPaw = document.querySelector('.js-paw');
     htmlPawShade = document.querySelector('.js-paw-shade');
@@ -155,16 +156,14 @@ const init = function () {
     htmlRedShade = document.querySelector('.js-red-shade');
     htmlRedSmall = document.querySelector('.js-red-small');
     htmlRedShadeSmall = document.querySelector('.js-red-shade-small');
-    htmldata = document.querySelector('.js-data');
-
-    //console
-    console.log(htmlds18);
 
     //deze code wordt gestart vanaf index.html
     if (htmlSwitch){
+      console.log(htmlSwitch)
       listenToClickHatch();
     }
     if(htmlds18){
+      console.log(htmlds18)
       listenToSocket();
     }
 

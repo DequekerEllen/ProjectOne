@@ -59,12 +59,41 @@ def initial_connection():
     # # Send to the client!
 
 
-def waarde():
+@socketio.on('F2B_switch')
+def switch_hatch(data):
+    # Ophalen van de data
+    new_status = data['new_status']
+    new_waarde = data['new_waarde']
+    date = datetime.now()+timedelta(hours=1)
+    print(f"Magneet wordt geswitcht naar {new_status}")
 
+    if new_status == 5:
+        temp = float(wire.read_temp())
+        neerslag = float(mcp.read_channel(2))
+        licht_percentage = float(mcp.read_channel(1))
+        state = lock.state_hatch()
+        lock.hatch(state, magnet)
+        lock.change_state(state, temp, licht_percentage, neerslag)
+        # print(state)
+        time.sleep(2)
+
+    # Stel de status in op de DB
+    DataRepository.toevoegen_historiek(6, new_status, new_waarde, date)
+
+    # Vraag de (nieuwe) status op van het slot en stuur deze naar de frontend.
+    data = lock.state_hatch()
+    socketio.emit('B2F_verandering_magnet', {'status': data}, broadcast=True)
+
+
+# data = lock.state_hatch()
+# socketio.emit('B2F_verandering_magnet', {'status': data}, broadcast=True)
+
+
+def waarde():
     while True:
         print('*** Temp doorgeven **')
         temp = wire.read_temp()
-        print(temp)
+        # print(temp)
         date = datetime.now()+timedelta(hours=1)
         DataRepository.toevoegen_historiek(1, 1, temp, date)
         socketio.emit('B2F_waardeTemp_device', {
@@ -72,7 +101,7 @@ def waarde():
 
         print('*** Licht doorgeven **')
         licht_percentage = mcp.read_channel(1)
-        print(licht_percentage)
+        # print(licht_percentage)
         date = datetime.now()+timedelta(hours=1)
         DataRepository.toevoegen_historiek(2, 8, licht_percentage, date)
         socketio.emit('B2F_waardeLicht_device', {
@@ -80,9 +109,9 @@ def waarde():
 
         print('*** Neerslag doorgeven **')
         neerslag = mcp.read_channel(2)
-        print(neerslag)
+        # print(neerslag)
         woord_neerslag = wire.omzetten_neerslag(neerslag)
-        print(woord_neerslag)
+        # print(woord_neerslag)
         date = datetime.now()+timedelta(hours=1)
         DataRepository.toevoegen_historiek(3, 2, neerslag, date)
         socketio.emit('B2F_waardeRain_device', {
@@ -100,7 +129,9 @@ def slot():
         state = lock.state_hatch()
         lock.hatch(state, magnet)
         lock.change_state(state, temp, licht_percentage, neerslag)
-        print(state)
+        # socketio.emit('B2F_verandering_magnet', {
+        #               'status': state}, broadcast=True)
+        # print(state)
         time.sleep(2)
 
 
@@ -108,21 +139,6 @@ thread = threading.Timer(0.2, waarde)
 thread2 = threading.Timer(0.01, slot)
 thread.start()
 thread2.start()
-
-
-@socketio.on('F2B_switch')
-def switch_hatch(data):
-    # Ophalen van de data
-    new_status = data['new_status']
-    new_waarde = data['new_waarde']
-    date = datetime.now()+timedelta(hours=1)
-    print(f"Magneet wordt geswitcht naar {new_status}")
-    # Stel de status in op de DB
-    DataRepository.toevoegen_historiek(6, new_status, new_waarde, date)
-
-    # Vraag de (nieuwe) status op van de lamp en stuur deze naar de frontend.
-    data = lock.state_hatch()
-    socketio.emit('B2F_verandering_magnet', {'status': data}, broadcast=True)
 
 
 if __name__ == '__main__':
