@@ -40,6 +40,11 @@ class DataRepository:
         params = [Naam, RfidNummer, Status]
         return Database.execute_sql(sql, params)
 
+    def verwijder_kat(id):
+        sql = "DELETE from kat WHERE KatID = %s"
+        params = [id]
+        return Database.execute_sql(sql, params)
+
     @staticmethod
     def update_status_kat(id, status, gepaseerd):
         sql = "UPDATE kat SET status = %s, Gepaseerd = %s WHERE KatID = %s"

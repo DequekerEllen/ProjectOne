@@ -70,11 +70,7 @@ const LockOn = function(){
 }
 
 
-const listenToSocket = function () {
-    socket.on("connected", function () {
-      console.log("verbonden met socket webserver");
-    });
-
+const listenToSocketWeather = function () {
     socket.on("B2F_waardeTemp_device", function (jsonObject) {
       console.log("Dit is de Waarde");
       console.log(jsonObject);
@@ -93,18 +89,28 @@ const listenToSocket = function () {
       waardeVeranderenStats(htmlRain, jsonObject, " ");
     });
 
-    socket.on("B2F_verandering_magnet", function (jsonObject) {
-      console.log("De status van het slot is veranderd");
-      console.log(`waarde: ${jsonObject}`);
-      const knop = htmlSwitch
-      knop.dataset.status = jsonObject.status;
-  
-      if (jsonObject.status == 5) {
-            LockOff();
-      }else{
-        LockOn();
-      };
-    }); 
+    
+}
+
+const listenToSocket = function(){
+  socket.on("connected", function () {
+    console.log("verbonden met socket webserver");
+  });
+  socket.on("B2F_verandering_magnet", function (jsonObject) {
+    // console.log(`waarde: ${jsonObject}`);
+    const knop = htmlSwitch
+    knop.dataset.status = jsonObject.status;
+
+    if (jsonObject.status == 5) {
+      // console.log("De status van het slot is veranderd");
+      htmlSwitch.innerHTML = "Close";
+      LockOff();
+    }else{
+      // console.log("De status van het slot is veranderd");
+      LockOn();
+      htmlSwitch.innerHTML = "Open";
+    };
+  }); 
 }
 
 
@@ -115,7 +121,7 @@ const listenToClickHatch = function(){
     // console.log(this.dataset.status);
 
     if (this.dataset.status == 4){
-      LockOff();
+      // LockOff();
       htmlSwitch.innerHTML = "Close";
       this.dataset.status = 5;
       newstate = 5;
@@ -123,7 +129,7 @@ const listenToClickHatch = function(){
       console.log("open");
     }
     else{
-      LockOn();
+      // LockOn();
       htmlSwitch.innerHTML = "Open";
       this.dataset.status = 4;
       newstate = 4;
@@ -161,10 +167,11 @@ const init = function () {
     if (htmlSwitch){
       console.log(htmlSwitch)
       listenToClickHatch();
+      listenToSocket();
     }
     if(htmlds18){
       console.log(htmlds18)
-      listenToSocket();
+      listenToSocketWeather();
     }
 
   };

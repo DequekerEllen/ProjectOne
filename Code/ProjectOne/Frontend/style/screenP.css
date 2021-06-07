@@ -19,7 +19,7 @@ html {
   font-family: 'General Sans', Helvetica, arial, sans-serif;
   background: linear-gradient(to top right, #2b5876, #4e4376); 
   color: rgb(230, 230, 230);
-  height: 155%;
+  height: 130%;
 }
 
 @media (min-width: 992px) {

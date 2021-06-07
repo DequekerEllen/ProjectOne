@@ -67,26 +67,9 @@ def switch_hatch(data):
     date = datetime.now()+timedelta(hours=1)
     print(f"Magneet wordt geswitcht naar {new_status}")
 
-    if new_status == 5:
-        temp = float(wire.read_temp())
-        neerslag = float(mcp.read_channel(2))
-        licht_percentage = float(mcp.read_channel(1))
-        state = lock.state_hatch()
-        lock.hatch(state, magnet)
-        lock.change_state(state, temp, licht_percentage, neerslag)
-        # print(state)
-        time.sleep(2)
-
     # Stel de status in op de DB
     DataRepository.toevoegen_historiek(6, new_status, new_waarde, date)
 
-    # Vraag de (nieuwe) status op van het slot en stuur deze naar de frontend.
-    data = lock.state_hatch()
-    socketio.emit('B2F_verandering_magnet', {'status': data}, broadcast=True)
-
-
-# data = lock.state_hatch()
-# socketio.emit('B2F_verandering_magnet', {'status': data}, broadcast=True)
 
 
 def waarde():
@@ -129,8 +112,9 @@ def slot():
         state = lock.state_hatch()
         lock.hatch(state, magnet)
         lock.change_state(state, temp, licht_percentage, neerslag)
-        # socketio.emit('B2F_verandering_magnet', {
-        #               'status': state}, broadcast=True)
+        # Vraag de (nieuwe) status op van het slot en stuur deze naar de frontend.
+        socketio.emit('B2F_verandering_magnet', {
+                      'status': state}, broadcast=True)
         # print(state)
         time.sleep(2)
 

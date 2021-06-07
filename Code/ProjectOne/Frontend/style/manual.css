@@ -26,6 +26,10 @@ p{
 
 .house svg{
     width: 90%;
+    padding-left: 15px;
+    height: 100%;
+    margin-top: 80px;
+
 }
 
 .house{
