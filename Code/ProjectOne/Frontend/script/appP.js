@@ -122,7 +122,7 @@ const listenToClickHatch = function(){
 
     if (this.dataset.status == 4){
       // LockOff();
-      htmlSwitch.innerHTML = "Close";
+      // htmlSwitch.innerHTML = "Close";
       this.dataset.status = 5;
       newstate = 5;
       waarde = 0;
@@ -130,7 +130,7 @@ const listenToClickHatch = function(){
     }
     else{
       // LockOn();
-      htmlSwitch.innerHTML = "Open";
+      // htmlSwitch.innerHTML = "Open";
       this.dataset.status = 4;
       newstate = 4;
       waarde = 1;

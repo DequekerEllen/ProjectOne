@@ -12,6 +12,7 @@ from repositories.klasseMCP import MCP
 from repositories.klasseLCD import Main
 from repositories.klasseOneWire import Wire
 from repositories.klasseSlot import Lock
+from repositories.Read import RFID
 # from helpers.KlasseNeo import Neo
 
 magnet = 23
@@ -27,6 +28,7 @@ mcp = MCP(1, 0)
 lcd = Main()
 wire = Wire()
 lock = Lock()
+rfid = RFID()
 # neo = Neo()
 
 
@@ -69,7 +71,6 @@ def switch_hatch(data):
 
     # Stel de status in op de DB
     DataRepository.toevoegen_historiek(6, new_status, new_waarde, date)
-
 
 
 def waarde():
@@ -119,10 +120,18 @@ def slot():
         time.sleep(2)
 
 
+def readers():
+    while True:
+        rfid.buiten()
+        time.sleep(1)
+
+
 thread = threading.Timer(0.2, waarde)
 thread2 = threading.Timer(0.01, slot)
+thread3 = threading.Timer(0.01, readers)
 thread.start()
 thread2.start()
+thread3.start()
 
 
 if __name__ == '__main__':
