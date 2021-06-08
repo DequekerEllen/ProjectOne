@@ -59,6 +59,10 @@ img{
     .metingen{
         width: 30%;
         margin: 32px;
+        transition: 0.3s;
+    }
+    .metingen:hover{
+        box-shadow: 0px 0px 15px 0px #ad50bb;
     }
 }
 /* ********************************* */
