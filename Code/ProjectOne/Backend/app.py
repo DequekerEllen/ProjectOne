@@ -58,7 +58,9 @@ def hallo():
 @socketio.on('connect')
 def initial_connection():
     print('A new client connect')
+    katten = DataRepository.read_katten()
     # # Send to the client!
+    socketio.emit('B2F_katten', {'katten': katten}, broadcast=True)
 
 
 @socketio.on('F2B_switch')
@@ -126,12 +128,12 @@ def readers():
         time.sleep(1)
 
 
-thread = threading.Timer(0.2, waarde)
-thread2 = threading.Timer(0.01, slot)
-thread3 = threading.Timer(0.01, readers)
-thread.start()
-thread2.start()
-thread3.start()
+# thread = threading.Timer(0.2, waarde)
+# thread2 = threading.Timer(0.01, slot)
+# thread3 = threading.Timer(0.01, readers)
+# thread.start()
+# thread2.start()
+# thread3.start()
 
 
 if __name__ == '__main__':

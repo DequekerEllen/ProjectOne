@@ -1,10 +1,12 @@
 .c-delete svg{
   width: 20px;
   fill: rgb(230, 230, 230);
+  transition: 0.5s;
+
 }
 
 .c-delete svg:hover{
-  width: 19px;
+  width: 21px;
   fill: rgb(189, 55, 55);
 }
 
@@ -13,13 +15,15 @@
   fill: rgb(230, 230, 230);
   padding-top: 10px;
   position: absolute;
-  right: 80px;
+  right: 5px;
+  transition: 0.3s;
+
 }
 
 .c-add svg:hover{
-  fill: #e7a2c5;
+  width: 41px;
+  fill: #e9bad1;
 }
-
 
 h2 {
   font-size: 26px;
@@ -28,37 +32,36 @@ h2 {
 }
 
 .responsive-table{
-  padding-right: 80px;
   padding-top: 60px;
+  margin-left: -20px;
 }
 
 
 .table-header {
-  padding: 25px 30px;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 25px;
-  font-size: 14px;
-  text-transform: uppercase;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  border-radius: 40px;
-  box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+  display: none;
 }
+
 .table-row {
-  padding: 25px 30px;
+  padding: 25px 20px 15px 20px;
   display: flex;
+  font-size: 14px;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 25px;
   border: 1px solid;
-  border-radius: 40px;
+  border-radius: 50px;
   box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+  transition: 0.3s;
 }
 
 .table-row:hover{
-  border: 1px solid #e7a2c5;
-  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.123);
+  /* border: 1px solid #e7a2c5; */
+  box-shadow: 2px 2px 15px 2px rgba(0, 0, 0, 0.295);
 
+}
+
+.col{
+  padding: 0 20px;
 }
 
 .col-1 {
@@ -72,27 +75,98 @@ h2 {
 }
 .col-4 {
   flex-basis: 25%;
+  padding-right: 30px;
 }
 
-@media all and (max-width: 767px) {
+.input_add_cat{
+  display: flex;
+  flex-flow: wrap;
+  font-size: 14px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+::placeholder{
+  color: rgba(230, 230, 230, 0.568);
+}
+
+
+input{
+  width: 80%;
+  padding: 25px 20px 25px 20px;
+  margin-bottom: 25px;
+  border: 1px solid transparent;
+  border-radius: 50px;
+  box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+  background-color: transparent;
+  transition: 0.3s;
+  color: rgb(230, 230, 230);
+}
+
+.c-submit svg{
+  width: 40px;
+  fill: rgb(230, 230, 230);
+  padding-top: 10px;
+  position: absolute;
+  right: 5px;
+  transition: 0.3s;
+}
+
+.c-submit svg:hover{
+  width: 41px;
+  fill: #45e067;
+}
+
+
+@media (min-width: 992px) {
+  h2 {
+    font-size: 26px;
+    margin: 20px 0;
+    text-align: center;
+  }
+  .c-add svg{
+    width: 40px;
+    fill: rgb(230, 230, 230);
+    padding-top: 10px;
+    position: absolute;
+    right: 80px;
+    transition: 0.3s;
+  
+  }
+  
+  .responsive-table{
+    padding-right: 80px;
+    padding-top: 60px;
+  }
+  
+  
   .table-header {
-    display: none;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    border-radius: 40px;
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+  }
+  .table-row {
+    padding: 25px 30px;
+    border-radius: 40px;
+  }
+  
+  .col-4 {
+    flex-basis: 25%;
   }
 
-  li {
-    display: block;
+  input{
+    width: 60%;
+    padding: 25px 20px 20px 20px;
   }
-  .col {
-    flex-basis: 100%;
+
+  .c-submit svg{
+    right: 260px;
   }
-  .col {
-    display: flex;
-    padding: 10px 0;}
-  .col:before {
-      color: #6C7A89;
-      padding-right: 10px;
-      content: attr(data-label);
-      flex-basis: 50%;
-      text-align: right;
-    }
 }

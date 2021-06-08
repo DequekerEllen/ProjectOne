@@ -2,7 +2,7 @@ const lanIP = `${window.location.hostname}:5000`;
 const socket = io(`http://${lanIP}`);
 
 let htmlSwitch, htmlds18, htmlLdr, htmlRain, htmlFilling, htmlPaw, htmlPawShade, htmlRed, 
-htmlRedShade, htmlRedSmall, htmlRedShadeSmall;
+htmlRedShade, htmlRedSmall, htmlRedShadeSmall, htmlTable;
 
 const clearClassList = function (el, klasse) {
   el.classList.remove(`${klasse}`);
@@ -88,8 +88,36 @@ const listenToSocketWeather = function () {
       console.log(jsonObject);
       waardeVeranderenStats(htmlRain, jsonObject, " ");
     });
+}
 
-    
+const listenToSocketCats = function(){
+  socket.on("B2F_katten", function(jsonObject){
+    console.log(jsonObject);
+    rows = document.querySelector('.js-katten');
+    rows.innerHTML = '';
+    for (const kat of jsonObject.katten){
+      Status = kat.Status;
+      if(Status == 1){
+        Locatie = 'Outside';
+      }else{
+        Locatie = 'Inside';
+      };
+      rows.innerHTML += `
+      <li class="js-table-row table-row">
+        <div class=" col col-1">
+            <a class="js-delete c-delete" href="">
+                <svg class="c-__delete-symbol" height="20pt" viewBox="0 0 329.26933 329"
+                    width="15pt">
+                    <path
+                        d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0" />
+                </svg>
+            </a>
+        </div>
+        <div class="col col-2">${kat.Naam}</div>
+        <div class="col col-4">${Locatie}</div>
+      </li>`
+    } 
+  })
 }
 
 const listenToSocket = function(){
@@ -143,6 +171,16 @@ const listenToClickHatch = function(){
 
 }
 
+const listenToClickDelete = function(){
+  const buttons = document.querySelectorAll('.js-delete');
+  for (const btn of buttons){
+    btn.addEventListener("click", function (){
+      console.log(btn);
+
+    })
+  }
+}
+
 
 //#region ***  Init / DOMContentLoaded                  ***********
 const init = function () {
@@ -154,6 +192,8 @@ const init = function () {
     htmlRain = document.querySelector('.js-dataRain');
     // switch knop
     htmlSwitch = document.querySelector('.js-switch')
+    // cats
+    htmlTable = document.querySelector('.js-table')
     // house svg fillings on/off
     htmlFilling = document.querySelector('.js-filling');
     htmlPaw = document.querySelector('.js-paw');
@@ -168,6 +208,10 @@ const init = function () {
       console.log(htmlSwitch)
       listenToClickHatch();
       listenToSocket();
+    }
+    if(htmlTable){
+      listenToSocketCats();
+      listenToClickDelete();
     }
     if(htmlds18){
       console.log(htmlds18)

@@ -17,6 +17,11 @@ class DataRepository:
         return Database.get_one_row(sql, params)
 
     @staticmethod
+    def read_katten():
+        sql = "SELECT KatID, Naam, Status from kat"
+        return Database.get_rows(sql)
+
+    @staticmethod
     def read_katid_by_rfid(rfid):
         sql = "SELECT KatID FROM kat WHERE RfidNummer = %s"
         params = [rfid]
