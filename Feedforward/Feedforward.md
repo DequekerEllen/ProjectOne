@@ -45,27 +45,40 @@ Lector: Pieter jan, Simon
 
 Vragen voor dit gesprek:
 - [x] vraag 1: Kan ik eventueel nog gebruik maken van andere sensoren/ actuatoren
-- [ ] vraag 2: 
 
 Dit is de feedback op mijn vragen. 
 - feedback 1: Gebruik maken van neopixels in de plaats van een led-strip
-- feedback 2
 
 Hier komt de feedforward: wat ga ik concreet doen?
 - [ ] ToDo 1: aanpassen documenten en opnieuw indienen, beginnen met het bestellen van de onderdelen.
-- [ ] ToDo 2
 
-## Gesprek 2 (Datum: dd/mm/yyyy)
-Lector: 
+## Toermoment 1 (Datum: dd/mm/yyyy)
+Lector: Pieter jan, Simon
 
-Vragen voor dit gesprek:
-- [x] vraag 1:
-- [ ] vraag 2:
-
-Dit is de feedback op mijn vragen. 
-- feedback 1
-- feedback 2
+Dit is de feedback. 
+- feedback 1: De data dat ik binnenkrijg live laten veranderen.
 
 Hier komt de feedforward: wat ga ik concreet doen?
-- [ ] ToDo 1
-- [ ] ToDo 2
+- [ ] ToDo 1: Ervoor zorgen dat ik de verschillende gegevens live op mijn site kan tonen en dat ze telkens zichzelf aanpassen.
+
+## Toermoment 2 (Datum: dd/mm/yyyy)
+Lector: Claudia, Geert
+
+Dit is de feedback. 
+- feedback 1: Eens van een afstand naar mijn site kijken zodat ik kleine foutjes eruit kan halen.
+- feedback 2: Zo rap mogelijk beginnen met het instaleren van de Rfid's.
+
+Hier komt de feedforward: wat ga ik concreet doen?
+- [ ] ToDo 1: Naar de details van mijn site kijken en deze aanpassen waar nodig, ook nog een historiek pagina maken.
+- [ ] ToDo 2: Opzoeken en coderen van de Rfid's.
+
+## Toermoment 3 (Datum: dd/mm/yyyy)
+Lector: 
+
+Dit is de feedback. 
+- feedback 1:
+- feedback 2:
+
+Hier komt de feedforward: wat ga ik concreet doen?
+- [ ] ToDo 1:
+- [ ] ToDo 2:
