@@ -103,9 +103,9 @@ const listenToSocketCats = function(){
         Locatie = 'Inside';
       };
       rows.innerHTML += `
-      <li class="js-table-row table-row">
+      <li class="js-table-row table-row" >
         <div class=" col col-1">
-            <a class="js-delete c-delete" href="">
+            <a class="js-delete c-delete" href="#" data-id="${kat.KatID}">
                 <svg class="c-__delete-symbol" height="20pt" viewBox="0 0 329.26933 329"
                     width="15pt">
                     <path
@@ -115,8 +115,9 @@ const listenToSocketCats = function(){
         </div>
         <div class="col col-2">${kat.Naam}</div>
         <div class="col col-4">${Locatie}</div>
-      </li>`
+      </li>`;
     } 
+    listenToClickDelete();
   })
 }
 
@@ -175,8 +176,9 @@ const listenToClickDelete = function(){
   const buttons = document.querySelectorAll('.js-delete');
   for (const btn of buttons){
     btn.addEventListener("click", function (){
-      console.log(btn);
-
+      let id = btn.getAttribute('data-id');
+      console.log(id);
+      socket.emit("F2B_delete_cat", {katid: id});
     })
   }
 }
@@ -211,7 +213,6 @@ const init = function () {
     }
     if(htmlTable){
       listenToSocketCats();
-      listenToClickDelete();
     }
     if(htmlds18){
       console.log(htmlds18)

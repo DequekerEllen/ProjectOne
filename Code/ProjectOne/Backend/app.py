@@ -75,6 +75,16 @@ def switch_hatch(data):
     DataRepository.toevoegen_historiek(6, new_status, new_waarde, date)
 
 
+@socketio.on('F2B_delete_cat')
+def delete_cat(data):
+    id = data['katid']
+    print(data)
+    DataRepository.verwijder_kat(id)
+    katten = DataRepository.read_katten()
+    # # Send to the client!
+    socketio.emit('B2F_katten', {'katten': katten}, broadcast=True)
+
+
 def waarde():
     while True:
         print('*** Temp doorgeven **')
