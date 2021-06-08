@@ -1,3 +1,4 @@
+/* ******* Mobile ******* */
 .alleWaarden{
     display: flex;
     flex-wrap: wrap;
@@ -8,6 +9,7 @@
 
 .metingen{
     border: 1px solid white;
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
     border-radius: 70px;
     padding: 24px;
     width: 90%;
@@ -17,17 +19,15 @@
     margin: 32px 24px;
 }
 
-
 .waarde{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-
 }
 
+/* ******* Text ******* */
 p{
     margin: 0px !important; 
-
 }
 
 .metingen h2{
@@ -37,61 +37,28 @@ p{
     flex-wrap: wrap;
     justify-content: center;
 }
+/* ********************************* */
 
 img{
     width: 9%;
     padding-right: 5px;
 }
 
-
 .rain{
     width: 17%;
     padding-right: 8px;
 }
+/* ********************************* */
 
+/* ******* Media Query ******* */
 @media (min-width: 992px) {
     .alleWaarden{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
         margin-top: 100px;
-        padding-left: 0;
     }
     
     .metingen{
-        border: 1px solid white;
-        border-radius: 70px;
-        padding: 24px;
         width: 30%;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
         margin: 32px;
     }
-    
-    
-    .waarde{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .metingen h2{
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    img{
-        width: 9%;
-        padding-right: 5px;
-    }
-    
-    
-    .rain{
-        width: 17%;
-        padding-right: 8px;
-    }
-    
 }
+/* ********************************* */
