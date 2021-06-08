@@ -1,9 +1,11 @@
 const lanIP = `${window.location.hostname}:5000`;
 const socket = io(`http://${lanIP}`);
 
+// ******* Html Data *******
 let htmlSwitch, htmlds18, htmlLdr, htmlRain, htmlFilling, htmlPaw, htmlPawShade, htmlRed, 
 htmlRedShade, htmlRedSmall, htmlRedShadeSmall, htmlTable;
 
+// ******* Classlist *******
 const clearClassList = function (el, klasse) {
   el.classList.remove(`${klasse}`);
 };
@@ -11,23 +13,9 @@ const addClassList = function (el, klasse) {
   el.classList.add(`${klasse}`);
 };
 
+// ******* House svg colors control *******
 const hatchCloseSvg = function(el){
   el.classList.add("filling_off")
-}
-
-const waardeVeranderenStats = function(html, object, value){
-  html.innerHTML = '';
-  html.innerHTML = `<p class="js-waarde"> ${object.waarde} ${value} </p>`;
-}
-
-const waardeHistoriek = function(html, object, value){
-  html.innerHTML += `<p class="js-waarde"> ${object.waarde} ${value} </p>`;
-  let lengte = html.querySelectorAll('.js-waarde');
-  let x = lengte.length;
-  if (x >= 10){
-    html.innerHTML -= `<p class="js-waarde"></p>`;
-    html.innerHTML += `<p class="js-waarde"> ${object.waarde} ${value} </p>`;
-  }
 }
 
 const LockOff = function(){
@@ -69,7 +57,23 @@ const LockOn = function(){
   hatchCloseSvg(htmlRedShadeSmall);
 }
 
+// ******* Change values data *******
+const waardeVeranderenStats = function(html, object, value){
+  html.innerHTML = '';
+  html.innerHTML = `<p class="js-waarde"> ${object.waarde} ${value} </p>`;
+}
 
+const waardeHistoriek = function(html, object, value){
+  html.innerHTML += `<p class="js-waarde"> ${object.waarde} ${value} </p>`;
+  let lengte = html.querySelectorAll('.js-waarde');
+  let x = lengte.length;
+  if (x >= 10){
+    html.innerHTML -= `<p class="js-waarde"></p>`;
+    html.innerHTML += `<p class="js-waarde"> ${object.waarde} ${value} </p>`;
+  }
+}
+
+// ******* Listen To Socket *******
 const listenToSocketWeather = function () {
     socket.on("B2F_waardeTemp_device", function (jsonObject) {
       console.log("Dit is de Waarde");
@@ -142,7 +146,7 @@ const listenToSocket = function(){
   }); 
 }
 
-
+// ******* Listen To Click *******
 const listenToClickHatch = function(){
   htmlSwitch.addEventListener("click", function () {
     let newstate;
@@ -194,19 +198,19 @@ const listenToClickAdd = function(){
 }
 
 
-//#region ***  Init / DOMContentLoaded                  ***********
+// ******* region ***  Init / DOMContentLoaded *******
 const init = function () {
     console.log('DOM geladen');
-    // Get some DOM, we created empty earlier.
-    // sensor data
+    // ******* Get some DOM, we created empty earlier. ********
+    // ******* sensor data *******
     htmlds18 = document.querySelector('.js-dataTemp');
     htmlLdr = document.querySelector('.js-dataLdr');
     htmlRain = document.querySelector('.js-dataRain');
-    // switch knop
+    // ******* switch knop *******
     htmlSwitch = document.querySelector('.js-switch')
-    // cats
+    // ******* cats ********
     htmlTable = document.querySelector('.js-table')
-    // house svg fillings on/off
+    // ******* house svg fillings on/off *******
     htmlFilling = document.querySelector('.js-filling');
     htmlPaw = document.querySelector('.js-paw');
     htmlPawShade = document.querySelector('.js-paw-shade');
@@ -215,7 +219,7 @@ const init = function () {
     htmlRedSmall = document.querySelector('.js-red-small');
     htmlRedShadeSmall = document.querySelector('.js-red-shade-small');
 
-    //deze code wordt gestart vanaf index.html
+    // ******* Code started from '...'.html *******
     if (htmlSwitch){
       console.log(htmlSwitch)
       listenToClickHatch();
@@ -235,4 +239,4 @@ const init = function () {
   };
   
   document.addEventListener('DOMContentLoaded', init);
-  //#endregion
+  // ******* endregion *******
