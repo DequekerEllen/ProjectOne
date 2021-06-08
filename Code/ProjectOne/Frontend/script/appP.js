@@ -183,6 +183,16 @@ const listenToClickDelete = function(){
   }
 }
 
+const listenToClickAdd = function(){
+  const btn = document.querySelector('.js-submit');
+  btn.addEventListener("click", function(){
+    let name = document.querySelector('.js-name').value;
+    let rfid = document.querySelector('.js-rfid').value;
+    let state = document.querySelector('.js-status').value;
+    socket.emit("F2B_add_cat", {naam: name, rfidN: rfid, status: state});
+  })
+}
+
 
 //#region ***  Init / DOMContentLoaded                  ***********
 const init = function () {
@@ -213,6 +223,9 @@ const init = function () {
     }
     if(htmlTable){
       listenToSocketCats();
+    }
+    if(document.querySelector('.js-submit')){
+      listenToClickAdd();
     }
     if(htmlds18){
       console.log(htmlds18)

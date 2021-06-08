@@ -1,3 +1,4 @@
+# ******* imports *******
 import re
 import time
 from RPi import GPIO
@@ -6,7 +7,9 @@ import threading
 from flask_cors import CORS
 from flask_socketio import SocketIO, emit, send
 from flask import Flask, jsonify
+# *********************************
 
+# ******* Repositories/Classes *******
 from repositories.DataRepository import DataRepository
 from repositories.klasseMCP import MCP
 from repositories.klasseLCD import Main
@@ -14,45 +17,54 @@ from repositories.klasseOneWire import Wire
 from repositories.klasseSlot import Lock
 from repositories.Read import RFID
 # from helpers.KlasseNeo import Neo
+# *********************************
 
+# ******* Code voor Hardware *******
 magnet = 23
 
-# Code voor Hardware
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(magnet, GPIO.OUT)
+# *********************************
 
-
-# klasses
+# ******* klasses *******
 mcp = MCP(1, 0)
 lcd = Main()
 wire = Wire()
 lock = Lock()
 rfid = RFID()
 # neo = Neo()
+# *********************************
 
 
-# Code voor Flask
+# ******* Code voor Flask *******
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'geheim!'
 socketio = SocketIO(app, cors_allowed_origins="*",
                     logger=False, engineio_logger=False, ping_timeout=1)
 
 CORS(app)
+# *********************************
+
+# ******* Handles the default namespace *******
 
 
-@socketio.on_error()        # Handles the default namespace
+@socketio.on_error()
 def error_handler(e):
     print(e)
+# *********************************
 
 
 print("**** Program started ****")
 
 
-# API ENDPOINTS
+# ******* API ENDPOINTS *******
 @app.route('/')
 def hallo():
     return "Server is running, er zijn momenteel geen API endpoints beschikbaar."
+# *********************************
+
+# ******* Connect + Cats *******
 
 
 @socketio.on('connect')
@@ -61,6 +73,29 @@ def initial_connection():
     katten = DataRepository.read_katten()
     # # Send to the client!
     socketio.emit('B2F_katten', {'katten': katten}, broadcast=True)
+
+
+@socketio.on('F2B_delete_cat')
+def delete_cat(data):
+    id = data['katid']
+    DataRepository.verwijder_kat(id)
+    katten = DataRepository.read_katten()
+    # # Send to the client!
+    socketio.emit('B2F_katten', {'katten': katten}, broadcast=True)
+
+
+@socketio.on('F2B_add_cat')
+def delete_cat(data):
+    naam = data['naam']
+    rfidnum = data['rfidN']
+    state = data['status']
+    DataRepository.toevoegen_kat(naam, rfidnum, state)
+    katten = DataRepository.read_katten()
+    # # Send to the client!
+    socketio.emit('B2F_katten', {'katten': katten}, broadcast=True)
+# *********************************
+
+# ******* Button Hatch *******
 
 
 @socketio.on('F2B_switch')
@@ -73,16 +108,9 @@ def switch_hatch(data):
 
     # Stel de status in op de DB
     DataRepository.toevoegen_historiek(6, new_status, new_waarde, date)
+# *********************************
 
-
-@socketio.on('F2B_delete_cat')
-def delete_cat(data):
-    id = data['katid']
-    print(data)
-    DataRepository.verwijder_kat(id)
-    katten = DataRepository.read_katten()
-    # # Send to the client!
-    socketio.emit('B2F_katten', {'katten': katten}, broadcast=True)
+# ******* Live data *******
 
 
 def waarde():
@@ -113,6 +141,9 @@ def waarde():
         socketio.emit('B2F_waardeRain_device', {
                       'waarde': woord_neerslag}, broadcast=True)
         time.sleep(10)
+# *********************************
+
+# ******* Lock *******
 
 
 def slot():
@@ -130,20 +161,25 @@ def slot():
                       'status': state}, broadcast=True)
         # print(state)
         time.sleep(2)
+# *********************************
+
+# ******* RFID readers *******
 
 
 def readers():
     while True:
         rfid.buiten()
         time.sleep(1)
+# *********************************
 
-
+# ******* Threads *******
 # thread = threading.Timer(0.2, waarde)
 # thread2 = threading.Timer(0.01, slot)
 # thread3 = threading.Timer(0.01, readers)
 # thread.start()
 # thread2.start()
 # thread3.start()
+# *********************************
 
 
 if __name__ == '__main__':
