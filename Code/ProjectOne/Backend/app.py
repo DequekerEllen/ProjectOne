@@ -173,11 +173,11 @@ def readers():
 # *********************************
 
 # ******* Threads *******
-# thread = threading.Timer(0.2, waarde)
-# thread2 = threading.Timer(0.01, slot)
+thread = threading.Timer(0.2, waarde)
+thread2 = threading.Timer(0.01, slot)
 # thread3 = threading.Timer(0.01, readers)
-# thread.start()
-# thread2.start()
+thread.start()
+thread2.start()
 # thread3.start()
 # *********************************
 
