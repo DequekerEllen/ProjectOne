@@ -52,7 +52,7 @@ Dit is de feedback op mijn vragen.
 Hier komt de feedforward: wat ga ik concreet doen?
 - [ ] ToDo 1: aanpassen documenten en opnieuw indienen, beginnen met het bestellen van de onderdelen.
 
-## Toermoment 1 (Datum: dd/mm/yyyy)
+## Toermoment 1 (Datum: 26/05/2021)
 Lector: Pieter jan, Simon
 
 Dit is de feedback. 
@@ -61,7 +61,18 @@ Dit is de feedback.
 Hier komt de feedforward: wat ga ik concreet doen?
 - [ ] ToDo 1: Ervoor zorgen dat ik de verschillende gegevens live op mijn site kan tonen en dat ze telkens zichzelf aanpassen.
 
-## Toermoment 2 (Datum: dd/mm/yyyy)
+## Electronics Consult (Datum: 31/05/2021)
+Lector: Geert
+
+# Controle van mijn fritzing schema
+
+Dit is de feedback. 
+- feedback 1: Alles was oke van mijn verbeterde versie.
+
+Hier komt de feedforward: wat ga ik concreet doen?
+- [ ] ToDo 1: Beginnen met het scchakelen van mijn onderdelen.
+
+## Toermoment 2 (Datum: 03/06/2021)
 Lector: Claudia, Geert
 
 Dit is de feedback. 
