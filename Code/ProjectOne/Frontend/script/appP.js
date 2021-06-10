@@ -141,6 +141,7 @@ const listenToSocket = function(){
       LockOn();
       htmlSwitch.innerHTML = "Open";
     };
+    listenToClickHatch();
   }); 
 }
 
@@ -220,7 +221,6 @@ const init = function () {
     // ******* Code started from '...'.html *******
     if (htmlSwitch){
       console.log(htmlSwitch)
-      listenToClickHatch();
       listenToSocket();
     }
     if(htmlTable){

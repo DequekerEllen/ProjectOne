@@ -96,8 +96,6 @@ def delete_cat(data):
 # *********************************
 
 # ******* Button Hatch *******
-
-
 @socketio.on('F2B_switch')
 def switch_hatch(data):
     # Ophalen van de data
@@ -111,8 +109,6 @@ def switch_hatch(data):
 # *********************************
 
 # ******* Live data *******
-
-
 def waarde():
     while True:
         print('*** Temp doorgeven **')

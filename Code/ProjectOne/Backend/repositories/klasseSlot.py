@@ -27,7 +27,7 @@ class Lock:
         elif state == 5:
             print("*** Open ***")
             main.lcd.set_cursor(1, 0)
-            main.lcd.write_message("Lock open  ")
+            main.lcd.write_message("Lock open   ")
             GPIO.output(magnet, GPIO.LOW)
 
     def change_state(self, state, temp, light, rain):
@@ -35,10 +35,12 @@ class Lock:
         if state == 5:
             if temp < 5.0 or temp > 38.0 or light < 20.0 or rain > 15:
                 data.toevoegen_historiek(6, 4, 1, date)
+                print("*** Closing ***")
             else:
                 print("*** Stays Open ***")
         if state == 4:
             if temp > 5.0 and temp < 38.0 and light > 20.0 and rain < 15:
                 data.toevoegen_historiek(6, 5, 0, date)
+                print("*** Opening ***")
             else:
                 print("*** Stays Closed ***")
