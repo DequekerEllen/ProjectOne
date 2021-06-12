@@ -15,9 +15,15 @@ from repositories.klasseMCP import MCP
 from repositories.klasseLCD import Main
 from repositories.klasseOneWire import Wire
 from repositories.klasseSlot import Lock
-from repositories.Read import RFID
 # from helpers.KlasseNeo import Neo
 # *********************************
+
+from time import sleep
+import sys
+from mfrc522 import SimpleMFRC522
+from mfrc522 import SimpleMFRC522B
+readerBinnen = SimpleMFRC522()
+readerBuiten = SimpleMFRC522B()
 
 # ******* Code voor Hardware *******
 magnet = 23
@@ -32,7 +38,6 @@ mcp = MCP(1, 0)
 lcd = Main()
 wire = Wire()
 lock = Lock()
-rfid = RFID()
 # neo = Neo()
 # *********************************
 
@@ -65,8 +70,6 @@ def hallo():
 # *********************************
 
 # ******* Connect + Cats *******
-
-
 @socketio.on('connect')
 def initial_connection():
     print('A new client connect')
@@ -85,7 +88,7 @@ def delete_cat(data):
 
 
 @socketio.on('F2B_add_cat')
-def delete_cat(data):
+def add_cat(data):
     naam = data['naam']
     rfidnum = data['rfidN']
     state = data['status']
@@ -109,6 +112,8 @@ def switch_hatch(data):
 # *********************************
 
 # ******* Live data *******
+
+
 def waarde():
     while True:
         print('*** Temp doorgeven **')
@@ -136,12 +141,11 @@ def waarde():
         DataRepository.toevoegen_historiek(3, 2, neerslag, date)
         socketio.emit('B2F_waardeRain_device', {
                       'waarde': woord_neerslag}, broadcast=True)
+
         time.sleep(10)
 # *********************************
 
 # ******* Lock *******
-
-
 def slot():
     lcd.show_status()
 
@@ -160,12 +164,12 @@ def slot():
 # *********************************
 
 # ******* RFID readers *******
+@socketio.on('F2B_scan')
+def scan_tag():
+    id = readerBinnen.read_id_no_block()
+    print(id)
+    socketio.emit('B2F_id', {'rfid': id}, broadcast=True)
 
-
-def readers():
-    while True:
-        rfid.buiten()
-        time.sleep(1)
 # *********************************
 
 # ******* Threads *******

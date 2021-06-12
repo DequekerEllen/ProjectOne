@@ -123,6 +123,8 @@ const listenToSocketCats = function(){
   })
 }
 
+
+
 const listenToSocket = function(){
   socket.on("connected", function () {
     console.log("verbonden met socket webserver");
@@ -170,9 +172,7 @@ const listenToClickHatch = function(){
 
     };
     socket.emit("F2B_switch", {new_status: newstate, new_waarde: waarde});
-    
   });
-
 }
 
 const listenToClickDelete = function(){
@@ -196,6 +196,20 @@ const listenToClickAdd = function(){
   })
 }
 
+const listenToSocketId = function(){
+  socket.on("B2F_id", function(jsonObject){
+    console.log(jsonObject.rfid);
+    let id = jsonObject.rfid;
+    document.querySelector('.js-rfid').value = id;
+  })
+}
+
+const scan = function(){
+  window.onload = function(){
+    alert("Scan your rfid tag");
+    socket.emit("F2B_scan");
+  } 
+}
 
 // ******* region ***  Init / DOMContentLoaded *******
 const init = function () {
@@ -220,17 +234,19 @@ const init = function () {
 
     // ******* Code started from '...'.html *******
     if (htmlSwitch){
-      console.log(htmlSwitch)
+      console.log(htmlSwitch);
       listenToSocket();
     }
     if(htmlTable){
       listenToSocketCats();
     }
     if(document.querySelector('.js-submit')){
+      scan();
+      listenToSocketId();
       listenToClickAdd();
     }
     if(htmlds18){
-      console.log(htmlds18)
+      console.log(htmlds18);
       listenToSocketWeather();
     }
 
