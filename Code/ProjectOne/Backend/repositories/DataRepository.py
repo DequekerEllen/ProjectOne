@@ -22,22 +22,21 @@ class DataRepository:
         return Database.get_rows(sql)
 
     @staticmethod
-    def read_katid_by_rfid(rfid):
-        sql = "SELECT KatID FROM kat WHERE RfidNummer = %s"
+    def read_status_alle_katten():
+        sql = "SELECT Status from kat"
+        return Database.get_rows(sql)
+
+    @staticmethod
+    def read_status_by_rfid(rfid):
+        sql = "SELECT Status FROM kat WHERE RfidNummer = %s"
         params = [rfid]
         return Database.get_one_row(sql, params)
 
     @staticmethod
-    def read_gepaseerd(katid):
-        sql = "SELECT Gepaseerd FROM kat WHERE KatID = %s"
-        params = [katid]
+    def read_gepaseerd(rfid):
+        sql = "SELECT Gepaseerd FROM kat WHERE RfidNummer = %s"
+        params = [rfid]
         return Database.get_one_row(sql, params)
-
-    @staticmethod
-    def toevoegen_historiek(DeviceID, ActieID, Waarde, Datum):
-        sql = "INSERT INTO historiek (DeviceID, ActieID, Waarde, Datum) VALUES (%s, %s, %s, %s)"
-        params = [DeviceID, ActieID, Waarde, Datum]
-        return Database.execute_sql(sql, params)
 
     @staticmethod
     def toevoegen_kat(Naam, RfidNummer, Status):
@@ -53,6 +52,12 @@ class DataRepository:
 
     @staticmethod
     def update_status_kat(id, status, gepaseerd):
-        sql = "UPDATE kat SET status = %s, Gepaseerd = %s WHERE KatID = %s"
+        sql = "UPDATE kat SET status = %s, Gepaseerd = %s WHERE RfidNummer = %s"
         params = [status, gepaseerd, id]
+        return Database.execute_sql(sql, params)
+
+    @staticmethod
+    def toevoegen_historiek(DeviceID, ActieID, Waarde, Datum):
+        sql = "INSERT INTO historiek (DeviceID, ActieID, Waarde, Datum) VALUES (%s, %s, %s, %s)"
+        params = [DeviceID, ActieID, Waarde, Datum]
         return Database.execute_sql(sql, params)

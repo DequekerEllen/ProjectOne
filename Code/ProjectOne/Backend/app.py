@@ -15,6 +15,7 @@ from repositories.klasseMCP import MCP
 from repositories.klasseLCD import Main
 from repositories.klasseOneWire import Wire
 from repositories.klasseSlot import Lock
+from repositories.rfid import RFID
 # from helpers.KlasseNeo import Neo
 # *********************************
 
@@ -38,6 +39,7 @@ mcp = MCP(1, 0)
 lcd = Main()
 wire = Wire()
 lock = Lock()
+RF = RFID()
 # neo = Neo()
 # *********************************
 
@@ -70,6 +72,8 @@ def hallo():
 # *********************************
 
 # ******* Connect + Cats *******
+
+
 @socketio.on('connect')
 def initial_connection():
     print('A new client connect')
@@ -99,6 +103,8 @@ def add_cat(data):
 # *********************************
 
 # ******* Button Hatch *******
+
+
 @socketio.on('F2B_switch')
 def switch_hatch(data):
     # Ophalen van de data
@@ -146,6 +152,8 @@ def waarde():
 # *********************************
 
 # ******* Lock *******
+
+
 def slot():
     lcd.show_status()
 
@@ -164,21 +172,34 @@ def slot():
 # *********************************
 
 # ******* RFID readers *******
+
+
 @socketio.on('F2B_scan')
 def scan_tag():
     id = readerBinnen.read_id_no_block()
     print(id)
     socketio.emit('B2F_id', {'rfid': id}, broadcast=True)
 
+
+def rfid():
+    while True:
+        RF.Reading_cats()
+        katten = DataRepository.read_katten()
+        # # Send to the client!
+        socketio.emit('B2F_katten', {'katten': katten}, broadcast=True)
+
+        time.sleep(0.5)
+
 # *********************************
+
 
 # ******* Threads *******
 thread = threading.Timer(0.2, waarde)
 thread2 = threading.Timer(0.01, slot)
-# thread3 = threading.Timer(0.01, readers)
+thread3 = threading.Timer(0.01, rfid)
 thread.start()
 thread2.start()
-# thread3.start()
+thread3.start()
 # *********************************
 
 
