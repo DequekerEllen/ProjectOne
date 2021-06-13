@@ -1,6 +1,7 @@
 /* ******* Mobile ******* */
 h2{
     font-size: 64px;
+    padding-right: 40px;
 }
 
 p{
@@ -9,9 +10,6 @@ p{
     /* width: 80%; */
 }
 
-.knop{
-    margin: 0 0 0 0;
-}
 
 .text_manual{
     margin-right: 0;
@@ -23,6 +21,7 @@ p{
     text-decoration: none;
     padding: 16px 32px;
     border-radius: 30px;
+    cursor:pointer;
 }
 
 .house svg{
