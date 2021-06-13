@@ -39,6 +39,10 @@ class DataRepository:
         return Database.get_one_row(sql, params)
 
     @staticmethod
+    def read_gepaseerd_alle():
+        sql = "SELECT Naam, Gepaseerd FROM kat"
+
+    @staticmethod
     def toevoegen_kat(Naam, RfidNummer, Status):
         sql = "INSERT INTO kat (Naam, RfidNummer, Status) VALUES (%s, %s, %s)"
         params = [Naam, RfidNummer, Status]
