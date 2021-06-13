@@ -1,5 +1,6 @@
 from time import sleep
 import sys
+from datetime import datetime, timedelta
 from mfrc522 import SimpleMFRC522
 from mfrc522 import SimpleMFRC522B
 from .DataRepository import DataRepository
@@ -7,6 +8,7 @@ from .DataRepository import DataRepository
 readerBinnen = SimpleMFRC522()
 readerBuiten = SimpleMFRC522B()
 data = DataRepository()
+date = datetime.now()+timedelta(hours=1)
 
 readings = {}
 
@@ -19,10 +21,12 @@ class RFID:
         idB = readerBuiten.read_id_no_block()
         if id is not None:
             print("ID Inside: %s" % (id))
+            data.toevoegen_historiek(5, 6, id, date)
             readings['Inside'] = id
 
         if idB is not None:
             print("ID Outside: %s" % (idB))
+            data.toevoegen_historiek(4, 7, id, date)
             readings['Outside'] = idB
 
         # print(readings)

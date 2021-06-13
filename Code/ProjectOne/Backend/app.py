@@ -96,7 +96,9 @@ def add_cat(data):
     naam = data['naam']
     rfidnum = data['rfidN']
     state = data['status']
+    date = datetime.now()+timedelta(hours=1)
     DataRepository.toevoegen_kat(naam, rfidnum, state)
+    DataRepository.toevoegen_historiek(7, 3, rfidnum, date)
     katten = DataRepository.read_katten()
     # # Send to the client!
     socketio.emit('B2F_katten', {'katten': katten}, broadcast=True)
