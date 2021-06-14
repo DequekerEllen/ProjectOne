@@ -23,7 +23,7 @@ class DataRepository:
 
     @staticmethod
     def read_status_alle_katten():
-        sql = "SELECT Status from kat"
+        sql = "SELECT Naam, Status from kat"
         return Database.get_rows(sql)
 
     @staticmethod
@@ -41,6 +41,7 @@ class DataRepository:
     @staticmethod
     def read_gepaseerd_alle():
         sql = "SELECT Naam, Gepaseerd FROM kat"
+        return Database.get_rows(sql)
 
     @staticmethod
     def toevoegen_kat(Naam, RfidNummer, Status):

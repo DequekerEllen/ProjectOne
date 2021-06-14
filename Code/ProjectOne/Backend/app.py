@@ -158,7 +158,6 @@ def waarde():
 
 def slot():
     lcd.show_status()
-
     while True:
         temp = float(wire.read_temp())
         neerslag = float(mcp.read_channel(2))
