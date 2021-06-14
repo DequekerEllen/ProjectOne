@@ -18,6 +18,7 @@ const hatchCloseSvg = function(el){
   el.classList.add("filling_off")
 }
 
+// ******* House off/on *******
 const LockOff = function(){
   // remove the transparent layers when hatch opens
   clearClassList(htmlFilling, "filling_off");
@@ -63,32 +64,23 @@ const waardeVeranderenStats = function(html, object, value){
   html.innerHTML = `<p class="js-waarde"> ${object.waarde} ${value} </p>`;
 }
 
-const waardeHistoriek = function(html, object, value){
-  html.innerHTML += `<p class="js-waarde"> ${object.waarde} ${value} </p>`;
-  let lengte = html.querySelectorAll('.js-waarde');
-  let x = lengte.length;
-  if (x >= 10){
-    html.innerHTML -= `<p class="js-waarde"></p>`;
-    html.innerHTML += `<p class="js-waarde"> ${object.waarde} ${value} </p>`;
-  }
-}
 
 // ******* Listen To Socket *******
 const listenToSocketWeather = function () {
     socket.on("B2F_waardeTemp_device", function (jsonObject) {
-      console.log("Dit is de Waarde");
+      console.log("This is the value");
       console.log(jsonObject);
       waardeVeranderenStats(htmlds18, jsonObject, "°C");    
     });
 
     socket.on("B2F_waardeLicht_device", function (jsonObject) {
-      console.log("Dit is de Waarde");
+      console.log("This is the value");
       console.log(jsonObject);
       waardeVeranderenStats(htmlLdr, jsonObject, "%");
     });
 
     socket.on("B2F_waardeRain_device", function (jsonObject) {
-      console.log("Dit is de Waarde");
+      console.log("This is the value");
       console.log(jsonObject);
       waardeVeranderenStats(htmlRain, jsonObject, " ");
     });
@@ -123,11 +115,9 @@ const listenToSocketCats = function(){
   })
 }
 
-
-
 const listenToSocket = function(){
   socket.on("connected", function () {
-    console.log("verbonden met socket webserver");
+    console.log("Connected to socket webserver");
   });
   socket.on("B2F_verandering_magnet", function (jsonObject) {
     // console.log(`waarde: ${jsonObject}`);
@@ -155,6 +145,42 @@ const listenToSocketId = function(){
   })
 }
 
+var randomColor = Math.floor(Math.random()*16777215).toString(16);
+
+const ListenToSocketData = function(){
+  socket.on("B2F_chart", function (jsonObject) {
+      const data = jsonObject.stats;
+      let xValues = [];
+      let yValues = [];
+      let barColors = [];
+      let color = "#" + randomColor;
+      for (const kat of data){
+        console.log(kat)
+        xValues.push(kat.Naam);
+        yValues.push(kat.Gepaseerd);
+        barColors.push(color);
+      }
+      new Chart("myChart", {
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+              
+            backgroundColor: barColors,
+            data: yValues
+            }]
+        },
+        options: {
+            legend: {display: false},
+            title: {
+            display: true,
+            text: "Times your cats have passed through"
+            }
+        }
+      });
+    });
+ 
+}
 
 // ******* Listen To UI *******
 const listenToClickHatch = function(){
@@ -169,7 +195,7 @@ const listenToClickHatch = function(){
       this.dataset.status = 5;
       newstate = 5;
       waarde = 0;
-      console.log("open");
+      console.log("Open");
     }
     else{
       // LockOn();
@@ -177,7 +203,7 @@ const listenToClickHatch = function(){
       this.dataset.status = 4;
       newstate = 4;
       waarde = 1;
-      console.log("closed");
+      console.log("Closed");
 
     };
     socket.emit("F2B_switch", {new_status: newstate, new_waarde: waarde});
@@ -212,6 +238,22 @@ const scan = function(){
   } 
 }
 
+const power = function(){
+  const btn = document.querySelector('.js-power');
+  btn.addEventListener('click', function(){
+    console.log('Shutting Down');
+    socket.emit("F2B_power");
+  })
+}
+
+const data = function(){
+  window.onload = function(){
+    socket.emit("F2B_data");
+  } 
+}
+
+
+  
 // ******* region ***  Init / DOMContentLoaded *******
 const init = function () {
     console.log('DOM geladen');
@@ -235,6 +277,7 @@ const init = function () {
     htmlRedShadeSmall = document.querySelector('.js-red-shade-small');
 
     // ******* Code started from '...'.html *******
+    power();
     if (htmlSwitch){
       console.log(htmlSwitch);
       listenToSocket();
@@ -250,6 +293,12 @@ const init = function () {
     if(htmlds18){
       console.log(htmlds18);
       listenToSocketWeather();
+    }
+
+    if(document.querySelector('.js-chart')){
+      console.log(document.querySelector('.js-chart'))
+      data();
+      ListenToSocketData();
     }
 
   };

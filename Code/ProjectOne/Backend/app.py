@@ -1,6 +1,7 @@
 # ******* imports *******
 import re
 import time
+import subprocess
 from RPi import GPIO
 from datetime import datetime, timedelta
 import threading
@@ -102,6 +103,12 @@ def add_cat(data):
     katten = DataRepository.read_katten()
     # # Send to the client!
     socketio.emit('B2F_katten', {'katten': katten}, broadcast=True)
+
+
+@socketio.on('F2B_data')
+def chart_cats():
+    stats = DataRepository.read_gepaseerd_alle()
+    socketio.emit('B2F_chart', {'stats': stats}, broadcast=True)
 # *********************************
 
 # ******* Button Hatch *******
@@ -191,6 +198,22 @@ def rfid():
 
         time.sleep(0.5)
 
+# *********************************
+
+# ******* Shutdown *******
+
+
+@socketio.on('F2B_power')
+def power_off():
+    print("Shutting Down")
+    time.sleep(5)
+
+    sudoPassword = 'W8w00rd'
+    command = 'sudo shutdown -h now'
+
+    subprocess.Popen('sudo -i', shell=True, stdout=subprocess.PIPE)
+    subprocess.Popen(sudoPassword, shell=True, stdout=subprocess.PIPE)
+    subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
 # *********************************
 
 
