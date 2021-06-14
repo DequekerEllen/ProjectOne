@@ -211,9 +211,11 @@ const scan = function(){
   } 
 }
 
+
 // ******* region ***  Init / DOMContentLoaded *******
 const init = function () {
     console.log('DOM geladen');
+
     // ******* Get some DOM, we created empty earlier. ********
     // ******* sensor data *******
     htmlds18 = document.querySelector('.js-dataTemp');

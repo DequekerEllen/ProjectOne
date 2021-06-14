@@ -3,6 +3,8 @@
 \*------------------------------------*/
 
 
+
+
 /*------------------------------------*\
   #GENERIC
 \*------------------------------------*/
@@ -184,10 +186,13 @@ a:hover{
   border: 1px solid rgba(255, 255, 255, 0.349); 
   border-radius: 20px;
   box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.349);
+  margin-top: 2px;
+  transition: 0.4s;
 }
 
 .power:hover{
-  fill: #057a7a;
+  fill: #f1b3d2;
+
 }
 
 /*------------------------------------*\
@@ -451,6 +456,7 @@ a:hover{
 .o-button-reset {
   border: none;
   margin: 0;
+  margin-right: 20px;
   padding: 0;
   width: auto;
   overflow: visible;
@@ -547,7 +553,193 @@ a:hover{
   }
 }
 
+/*
+    Component: mobile nav
+    ---
+    Dedicated mobile nav component
+*/
 
+.c-mobile-nav__nav{
+  margin-top: 150px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+.c-mobile-nav__body {
+  transform: translateX(-100%);
+  transition: transform 0.25s ease;
+}
+
+.c-page {
+  transform: translateX(0);
+  transition: transform 0.25s ease;
+}
+
+.c-mobile-nav__bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: #4e4376;
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+.c-mobile-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 100vh;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+}
+
+.has-mobile-nav .c-mobile-nav {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.c-mobile-nav__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.has-mobile-nav .c-page {
+  transform: translateX(25%);
+}
+
+.has-mobile-nav .c-mobile-nav__bg {
+  opacity: 5;
+}
+
+.c-mobile-nav__body {
+  position: relative;
+  padding: 55px 0 0 30px;
+  height: 60%;
+  width: 85%;
+  background-color: linear-gradient( top right, #2b5876, #4e4376);
+}
+
+.has-mobile-nav .c-mobile-nav__body {
+  transform: translate(0);
+}
+
+@media (min-width: 768px) {
+  .c-mobile-nav__body {
+    padding: 48px;
+  }
+}
+
+@media (min-width: 992px) {
+  /* Hide the mobile nav on larger viewports even whent it's open on smaller screens */
+  .c-mobile-nav {
+    display: none !important;
+  }
+}
+
+
+/*
+    Component: header
+    ---
+    Main header of the website
+*/
+
+.c-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.c-header__nav {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .c-header__nav {
+    display: block;
+  }
+
+  .c-header__nav--main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 12px;
+  }
+
+  .c-header__mobile-nav-trigger {
+    display: none;
+  }
+}
+
+/*
+    Component: Nav
+    ---
+    Main navigation of the site
+*/
+
+.c-nav-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  width: 24px;
+  height: 24px;
+}
+
+.c-nav-trigger__svg {
+  fill: rgb(230, 230, 230);
+  height: 100%;
+}
+
+.c-nav {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.c-nav--meta {
+  font-size: 16px;
+}
+
+.c-nav__link {
+  text-decoration: none;
+  font-weight: 500;
+  font-family: 'General Sans';
+  font-size: 16px;
+  display: block;
+  padding: 8px 0;
+}
+
+.c-nav__link{
+  color: rgb(230, 230, 230);
+}
+
+.is-selected {
+  color: #de609f !important;
+}
+
+.is-selected .c-nav__link,
+.c-nav__link:hover,
+.c-nav__link:focus {
+  color: #f1b3d2;
+}
+
+@media (min-width: 992px) {
+  .c-nav__list {
+    display: flex;
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+
+  .c-nav__link {
+    padding: 8px 16px;
+  }
+}
 
 /*
     Component: CTA link
