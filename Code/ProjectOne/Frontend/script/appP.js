@@ -147,7 +147,16 @@ const listenToSocket = function(){
   }); 
 }
 
-// ******* Listen To Click *******
+const listenToSocketId = function(){
+  socket.on("B2F_id", function(jsonObject){
+    console.log(jsonObject.rfid);
+    let id = jsonObject.rfid;
+    document.querySelector('.js-rfid').value = id;
+  })
+}
+
+
+// ******* Listen To UI *******
 const listenToClickHatch = function(){
   htmlSwitch.addEventListener("click", function () {
     let newstate;
@@ -196,21 +205,12 @@ const listenToClickAdd = function(){
   })
 }
 
-const listenToSocketId = function(){
-  socket.on("B2F_id", function(jsonObject){
-    console.log(jsonObject.rfid);
-    let id = jsonObject.rfid;
-    document.querySelector('.js-rfid').value = id;
-  })
-}
-
 const scan = function(){
   window.onload = function(){
     alert("Scan your rfid tag");
     socket.emit("F2B_scan");
   } 
 }
-
 
 // ******* region ***  Init / DOMContentLoaded *******
 const init = function () {

@@ -183,15 +183,15 @@ a:hover{
 
 .power{
   fill: #34b8b8;
-  border: 1px solid rgba(255, 255, 255, 0.349); 
+  border: 1px solid transparent; 
   border-radius: 20px;
-  box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.349);
   margin-top: 2px;
   transition: 0.4s;
 }
 
 .power:hover{
   fill: #f1b3d2;
+  box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.349);
 
 }
 
@@ -259,7 +259,7 @@ a:hover{
 */
 
 .o-container {
-  margin: 24px;
+  margin: 24px 0 10px 0;
   margin-left: auto;
   margin-right: auto;
   width: 100%;
